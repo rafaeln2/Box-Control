@@ -1,6 +1,5 @@
 package DAO;
 
-import java.sql.Connection;
 import java.util.Collection;
 
 import Entity.Pessoa;
