@@ -1,6 +1,6 @@
 # Box-Control
 
-Trabalho de Semestre: Nosso projeto consiste em um sistama de controle de estoque, que abrange qualquer tipo PDV.
+Trabalho de Semestre: Nosso projeto consiste em um sistema de controle de estoque, que abrange qualquer tipo PDV.
 
 ## Alunos
 
