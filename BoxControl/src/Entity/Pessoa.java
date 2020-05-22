@@ -12,11 +12,11 @@ public class Pessoa {
 	public Pessoa() {
 	}
 
-	public Integer getId_pessoa() {
+	public Integer getIdPessoa() {
 		return idPessoa;
 	}
 
-	public void setId_pessoa(Integer idPessoa) {
+	public void setIdPessoa(Integer idPessoa) {
 		this.idPessoa = idPessoa;
 	}
 
