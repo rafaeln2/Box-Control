@@ -1,6 +1,6 @@
 package Entity;
 
-public class PessoaCarrinho {
+public class Carrinho {
 	
 	private Integer idPessoa;
 	private Integer idFuncionario;
@@ -11,7 +11,7 @@ public class PessoaCarrinho {
 	private Integer nu_caixa;
 	private String tipoPagamento;
 	
-	public PessoaCarrinho() {
+	public Carrinho() {
 		
 	}
 
