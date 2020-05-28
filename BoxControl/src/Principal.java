@@ -18,7 +18,9 @@ public class Principal {
 			PessoaDAO pessoa = new PessoaImp();
 			
 			//Pessoa p2 = new Pessoa("09829368939", "Danleho", "20/06/1997");
-			pessoa.find("09829368939");
+			//pessoa.find("09829368939");
+			
+			System.out.println(pessoa.list());
 			//pessoa.update( "FERNANDOOO");
 			
 			System.out.println("success");
@@ -29,8 +31,8 @@ public class Principal {
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				System.out.println("ERROR");
 			}
-			System.out.println("ERROR");
 		}
 	}
 } 

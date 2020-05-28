@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import DAO.PessoaDAO;
@@ -45,10 +46,13 @@ public class PessoaImp implements PessoaDAO {
 		conn.setAutoCommit(false);
 
 		stm = conn.prepareStatement("UPDATE pessoa SET nome = (?) where cdpessoa = (?)");
-		
+
 		stm.setString(1, toUpdate);
 		stm.setInt(2, idPessoa);
-
+		
+		{
+			System.out.println("CPF NOT FOUND.");
+		}
 		stm.execute();
 		conn.commit();
 	}
@@ -56,27 +60,25 @@ public class PessoaImp implements PessoaDAO {
 	@Override
 	public Pessoa find(String cpfPessoa) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-		
-		sttm = conn.createStatement();
-		rs = sttm.executeQuery("select * from pessoa");
+		conn.setAutoCommit(false);
+		stm = conn.prepareStatement("select * from pessoa where cpf = (?)");
+		stm.setString(1, cpfPessoa);
 		
 		rs = stm.executeQuery();
-		rs.next();
-		
+
 		while(rs.next()) {
 			System.out.println("ID: " + rs.getInt("cdpessoa") + ", ");
 			System.out.println("CPF: " + rs.getString("cpf")+ ", ");
 			System.out.println("NOME: " + rs.getString("nome")+", ");
 			System.out.println("DATA NASC: " + rs.getDate("data_nasc")+", ");
-		}
-		
+		};
 		return null;
 	}
 
 	@Override
 	public void drop(Integer idPessoa) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-		sttm = conn.createStatement();
+
 		ResultSet rs = sttm.executeQuery("");
 		rs.next();
 
@@ -85,8 +87,25 @@ public class PessoaImp implements PessoaDAO {
 
 	@Override
 	public Collection<Pessoa> list() throws Exception {
-
-		return null;
+		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
+		conn.setAutoCommit(false);
+		
+		stm = conn.prepareStatement("select * from pessoa order by cdpessoa");
+		rs = stm.executeQuery();
+		
+		Collection<Pessoa> peoples = new ArrayList<>();
+		
+		while(rs.next()) {
+			Integer cdpessoa = rs.getInt("cdpessoa");
+			String cpf = rs.getString("cpf");
+			String nome = rs.getString("nome");
+			String dataNasc = rs.getString("data_nasc");
+			
+			peoples.add(new Pessoa(cdpessoa, cpf, nome, dataNasc));
+		}
+		
+		
+		return peoples;
 	}
 
 	@Override
