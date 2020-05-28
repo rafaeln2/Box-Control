@@ -1,23 +1,44 @@
 package Entity;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 
 public class Pessoa {
 
 	private Integer idPessoa;
 	private String cpf;
 	private String nome;
-	private Date dataNasc;
+	private String dataNasc;
+	
+	List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	
 	public Pessoa() {
+	}
+
+	public Pessoa(String cpf, String nome, String date) {
+		this.cpf = cpf;
+		this.nome = nome;
+		this.dataNasc = date;
+		this.pessoas.add(this);
+	}
+
+	public Pessoa(Integer idPessoa, String cpf, String nome, String date) {
+		this.idPessoa = idPessoa;
+		this.cpf = cpf;
+		this.nome = nome;
+		this.dataNasc = date;
+		this.pessoas.add(this);
 	}
 
 	public Integer getIdPessoa() {
 		return idPessoa;
 	}
 
-	public void setIdPessoa(Integer idPessoa) {
+	public Pessoa setIdPessoa(Integer idPessoa) {
 		this.idPessoa = idPessoa;
+		return this;
 	}
 
 	public String getCpf() {
@@ -32,21 +53,21 @@ public class Pessoa {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public Pessoa setNome(String nome) {
 		this.nome = nome;
+		return this;
 	}
 
-	public Date getData_nasc() {
+	public String getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setData_nasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setDataNasc(String date) {
+		this.dataNasc = date;
 	}
-
 	@Override
 	public String toString() {
-		return "Pessoa [id_pessoa=" + idPessoa + ", cpf=" + cpf + ", nome=" + nome + ", data_nasc=" + dataNasc + "]";
+		return "Pessoa [id_pessoa= " + idPessoa + ", \n cpf= " + cpf + ",\n nome= " + nome + ",\n dataNasc= " + dataNasc + "]";
 	}
 	
 	
