@@ -2,21 +2,24 @@ package Entity;
 
 public class Telefone {
 
-	private Integer idTelefone;
+	private Integer cdTelefone;
 	private String ddd;
 	private String numero;
-	private Integer idPessoa;
+	private Integer cdPessoa; //enum
 
 	public Telefone() {
 	}
 
-	public Integer getIdTelefone() {
-		return idTelefone;
+
+	public Integer getCdTelefone() {
+		return cdTelefone;
 	}
 
-	public void setIdTelefone(Integer idTelefone) {
-		this.idTelefone = idTelefone;
+
+	public void setCdTelefone(Integer cdTelefone) {
+		this.cdTelefone = cdTelefone;
 	}
+
 
 	public String getDdd() {
 		return ddd;
@@ -34,17 +37,20 @@ public class Telefone {
 		this.numero = numero;
 	}
 
-	public Integer getIdPessoa() {
-		return idPessoa;
+
+	public Integer getCdPessoa() {
+		return cdPessoa;
 	}
 
-	public void setIdPessoa(Integer idPessoa) {
-		this.idPessoa = idPessoa;
+
+	public void setCdPessoa(Integer cdPessoa) {
+		this.cdPessoa = cdPessoa;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Telefone [idTelefone=" + idTelefone + ", ddd=" + ddd + ", numero=" + numero + ", idPessoa=" + idPessoa
+		return "Telefone [idTelefone=" + cdTelefone + ", ddd=" + ddd + ", numero=" + numero + ", idPessoa=" + cdPessoa
 				+ "]";
 	}
 

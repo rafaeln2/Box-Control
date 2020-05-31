@@ -1,8 +1,13 @@
 import java.sql.*;
 
+import ConnectJDBC.CargoImp;
+import ConnectJDBC.CarrinhoImp;
 import ConnectJDBC.PessoaImp;
+import DAO.CargoDAO;
+import DAO.CarrinhoDAO;
 import DAO.PessoaDAO;
-import Entity.Pessoa;
+import Entity.Cargo;
+import Entity.Carrinho;
 
 public class Principal {
 	public static void main(String[] args) {
@@ -12,18 +17,15 @@ public class Principal {
 			Class.forName("org.postgresql.Driver");
 			
 			conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "postgres", "danield5"); 
-			//conn.setAutoCommit(false);
-			
 			
 			PessoaDAO pessoa = new PessoaImp();
+			pessoa.read(2);
+			/*
+			 * 
+			 * 
+			 * 
+			 */
 			
-			//Pessoa p2 = new Pessoa("09829368939", "Danleho", "20/06/1997");
-			//pessoa.find("09829368939");
-			
-			System.out.println(pessoa.list());
-			//pessoa.update( "FERNANDOOO");
-			
-			System.out.println("success");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -31,7 +33,6 @@ public class Principal {
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.out.println("ERROR");
 			}
 		}
 	}

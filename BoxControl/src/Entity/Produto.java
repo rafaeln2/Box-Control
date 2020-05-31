@@ -6,7 +6,7 @@ public class Produto {
 	private String desc;
 	private Double valor;
 	private String marca;
-	private String um;
+	private String um; //enum
 	
 	public Produto() {
 		

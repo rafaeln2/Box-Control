@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,106 +14,92 @@ import DAO.PessoaDAO;
 import Entity.Pessoa;
 
 public class PessoaImp implements PessoaDAO {
-	Connection conn = null; 
-	PreparedStatement stm;
-	ResultSet rs;
-	Statement sttm;
+	private Connection conn = null; 
+	private PreparedStatement stm;
+	private ResultSet rs;
+	private Statement sttm;
 
 	@Override
 	public void create(Pessoa pessoa) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-		conn.setAutoCommit(false);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 		String data = pessoa.getDataNasc(); 
 		Date dataAtt = formatter.parse(data);
 
-		stm = conn.prepareStatement("insert into pessoa( cpf, nome, data_nasc) VALUES (?, ?, ?)");
+		sttm = conn.createStatement();
 
-		Integer id = this.getId();
-		pessoa.setIdPessoa(id);
+		rs = sttm.executeQuery("select nextval('pessoa_cdpessoa_seq')");
+		rs.next();
+		Integer id = rs.getInt(1);
 
-		stm.setString(1, pessoa.getCpf());
-		stm.setString(2, pessoa.getNome());
-		stm.setDate(3, new java.sql.Date(dataAtt.getTime()));
-
-		stm.execute();
-		conn.commit();
+		stm = conn.prepareStatement("insert into pessoa(cdpessoa, cpf, nome, data_nasc) VALUES (?, ?, ?, ?)");
+		stm.setInt(1, id);
+		stm.setString(2, pessoa.getCpf());
+		stm.setString(3, pessoa.getNome());
+		stm.setDate(4, new java.sql.Date(dataAtt.getTime()));
+		stm.executeUpdate();
 	}
 
 	@Override
-	public void update(Integer idPessoa, String toUpdate) throws Exception {
+	public Pessoa read(Integer idPessoa) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-		conn.setAutoCommit(false);
-
-		stm = conn.prepareStatement("UPDATE pessoa SET nome = (?) where cdpessoa = (?)");
-
-		stm.setString(1, toUpdate);
-		stm.setInt(2, idPessoa);
 		
-		{
-			System.out.println("CPF NOT FOUND.");
-		}
-		stm.execute();
-		conn.commit();
-	}
-
-	@Override
-	public Pessoa find(String cpfPessoa) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-		conn.setAutoCommit(false);
-		stm = conn.prepareStatement("select * from pessoa where cpf = (?)");
-		stm.setString(1, cpfPessoa);
-		
+		stm = conn.prepareStatement("select * from pessoa as p left join funcionario as f ON p.cdpessoa = f.cdpessoa where p.cdpessoa = (?) order by p.cdpessoa");
+		stm.setInt(1, idPessoa);
+	
 		rs = stm.executeQuery();
 
+		ResultSetMetaData rsmd = rs.getMetaData();
+		
+		int columnsNumber = rsmd.getColumnCount();
+		
 		while(rs.next()) {
-			System.out.println("ID: " + rs.getInt("cdpessoa") + ", ");
-			System.out.println("CPF: " + rs.getString("cpf")+ ", ");
-			System.out.println("NOME: " + rs.getString("nome")+", ");
-			System.out.println("DATA NASC: " + rs.getDate("data_nasc")+", ");
+			for(int i = 1; i <= columnsNumber; i++) {
+				System.out.printf("[%s: %s] %n", rsmd.getColumnName(i), rs.getString(i) );
+			}
 		};
 		return null;
 	}
 
 	@Override
-	public void drop(Integer idPessoa) throws Exception {
+	public void update(Integer idPessoa, String toUpdate) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
 
-		ResultSet rs = sttm.executeQuery("");
-		rs.next();
+		stm = conn.prepareStatement("UPDATE pessoa SET nome = (?) where cdpessoa = (?)");
+		stm.setString(1, toUpdate);
+		stm.setInt(2, idPessoa);
+		stm.executeUpdate();
+	}
 
+	@Override
+	public void delete(Integer idPessoa) throws Exception {
+		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
 
+		stm = conn.prepareStatement("delete from pessoa where cdpessoa = (?)");
+		stm.setInt(1, idPessoa);
+		stm.executeUpdate();
 	}
 
 	@Override
 	public Collection<Pessoa> list() throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-		conn.setAutoCommit(false);
-		
+
 		stm = conn.prepareStatement("select * from pessoa order by cdpessoa");
 		rs = stm.executeQuery();
-		
+
 		Collection<Pessoa> peoples = new ArrayList<>();
-		
+
 		while(rs.next()) {
-			Integer cdpessoa = rs.getInt("cdpessoa");
+			Integer cdPessoa = rs.getInt("cdpessoa");
 			String cpf = rs.getString("cpf");
 			String nome = rs.getString("nome");
 			String dataNasc = rs.getString("data_nasc");
-			
-			peoples.add(new Pessoa(cdpessoa, cpf, nome, dataNasc));
+		
+
+			peoples.add(new Pessoa(cdPessoa, cpf, nome, dataNasc));
 		}
-		
-		
 		return peoples;
 	}
 
-	@Override
-	public Integer getId() throws Exception {
-		Statement sttm = conn.createStatement();
-		rs = sttm.executeQuery("select nextval('pessoa_cdpessoa_seq'::regclass)");
-		rs.next();
-		return rs.getInt(1);
-	}
 }

@@ -7,7 +7,18 @@ public class Cargo {
 	private String nmCargo;
 
 	public Cargo() {
+		
+	}
 
+	public Cargo(Integer nivelAcesso, String nmCargo) {
+		this.nivelAcesso = nivelAcesso;
+		this.nmCargo = nmCargo;
+	}
+
+	public Cargo(Integer cdCargo, Integer nivelAcesso, String nmCargo) {
+		this.cdCargo = cdCargo;
+		this.nivelAcesso = nivelAcesso;
+		this.nmCargo = nmCargo;
 	}
 
 	public Integer getCdCargo() {
@@ -33,10 +44,10 @@ public class Cargo {
 	public void setNmCargo(String nmCargo) {
 		this.nmCargo = nmCargo;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Cargo [cdCargo=" + cdCargo + ", nivelAcesso=" + nivelAcesso + ", nmCargo=" + nmCargo + "]";
+		return "\nCargo [cdCargo=" + cdCargo + ", nivelAcesso=" + nivelAcesso + ", nmCargo=" + nmCargo + "]";
 	}
 
 

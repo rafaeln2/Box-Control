@@ -66,7 +66,7 @@ public class Pessoa {
 	}
 	@Override
 	public String toString() {
-		return "Pessoa [id_pessoa= " + idPessoa + ", \n cpf= " + cpf + ",\n nome= " + nome + ",\n dataNasc= " + dataNasc + "]";
+		return "\n Pessoa [id_pessoa= " + idPessoa + ", cpf= " + cpf + ", nome= " + nome + ", dataNasc= " + dataNasc + "]";
 	}
 	
 	

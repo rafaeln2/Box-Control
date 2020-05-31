@@ -7,13 +7,13 @@ import Entity.Carrinho;
 
 public interface CarrinhoDAO {
 	
-	public void createEntity(Carrinho Carrinho) throws Exception;
+	public void create(Carrinho carrinho) throws Exception;
 
-	public void updateEntity(Carrinho Carrinho)throws Exception;
+	public Carrinho read(Integer cdCarrinho)throws Exception;
 
-	public Carrinho findEntity(Carrinho Carrinho)throws Exception;
+	public void update(Integer cdCarrinho, String toUpdate)throws Exception;
 
-	public void dropEntity(Carrinho Carrinho)throws Exception;
+	public void delete(Integer cdCarrinho)throws Exception;
 
 	Collection<Carrinho> list()throws Exception;
 }
