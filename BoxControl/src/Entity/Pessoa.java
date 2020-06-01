@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Pessoa {
 
-	private Integer idPessoa;
+	private Integer cdPessoa;
 	private String cpf;
 	private String nome;
 	private Date dataNasc;
@@ -12,12 +12,27 @@ public class Pessoa {
 	public Pessoa() {
 	}
 
-	public Integer getIdPessoa() {
-		return idPessoa;
+	public Pessoa(String cpf, String nome, Date dataNasc) {
+		super();
+		this.cpf = cpf;
+		this.nome = nome;
+		this.dataNasc = dataNasc;
 	}
 
-	public void setIdPessoa(Integer idPessoa) {
-		this.idPessoa = idPessoa;
+	public Pessoa(Integer cdPessoa, String cpf, String nome, Date dataNasc) {
+		super();
+		this.cdPessoa = cdPessoa;
+		this.cpf = cpf;
+		this.nome = nome;
+		this.dataNasc = dataNasc;
+	}
+
+	public Integer getcdPessoa() {
+		return cdPessoa;
+	}
+
+	public void setcdPessoa(Integer cdPessoa) {
+		this.cdPessoa = cdPessoa;
 	}
 
 	public String getCpf() {
@@ -46,7 +61,7 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa [id_pessoa=" + idPessoa + ", cpf=" + cpf + ", nome=" + nome + ", data_nasc=" + dataNasc + "]";
+		return "Pessoa [id_pessoa=" + cdPessoa + ", cpf=" + cpf + ", nome=" + nome + ", data_nasc=" + dataNasc + "]";
 	}
 	
 	
