@@ -6,13 +6,14 @@ import Entity.Pessoa;
 
 public interface PessoaDAO {
 
-	public void createEntity(Pessoa pessoa) throws Exception;
 	
-	public void updateEntity( Pessoa pessoa)throws Exception;
+	public void create(Pessoa pessoa) throws Exception;
 	
-	public Pessoa findEntity(Pessoa pessoa)throws Exception;
+	public void read(Integer cdPessoa)throws Exception;
 	
-	public void dropEntity(Pessoa pessoa)throws Exception;
+	public void update(Integer cdPessoa, String toUpdate)throws Exception;
+	
+	public void delete(Integer cdPessoa)throws Exception;
 	
 	Collection<Pessoa> list()throws Exception;
 	

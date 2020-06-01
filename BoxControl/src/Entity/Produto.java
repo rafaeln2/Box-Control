@@ -2,22 +2,37 @@ package Entity;
 
 public class Produto {
 
-	private Integer idProduto;
+	private Integer cdProduto;
 	private String desc;
-	private Double valor;
+	private Float valor;
 	private String marca;
-	private String um;
+	private String um; //enum
 	
 	public Produto() {
 		
 	}
 
-	public Integer getIdProduto() {
-		return idProduto;
+	public Produto(String desc, Float valor, String marca, String um) {
+		this.desc = desc;
+		this.valor = valor;
+		this.marca = marca;
+		this.um = um;
 	}
 
-	public void setIdProduto(Integer idProduto) {
-		this.idProduto = idProduto;
+	public Produto(Integer cdProduto, String desc, Float valor, String marca, String um) {
+		this.cdProduto = cdProduto;
+		this.desc = desc;
+		this.valor = valor;
+		this.marca = marca;
+		this.um = um;
+	}
+
+	public Integer getcdProduto() {
+		return cdProduto;
+	}
+
+	public void setcdProduto(Integer cdProduto) {
+		this.cdProduto = cdProduto;
 	}
 
 	public String getDesc() {
@@ -28,11 +43,11 @@ public class Produto {
 		this.desc = desc;
 	}
 
-	public Double getValor() {
+	public Float getValor() {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(Float valor) {
 		this.valor = valor;
 	}
 
@@ -54,7 +69,7 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto [idProduto=" + idProduto + ", desc=" + desc + ", valor=" + valor + ", marca=" + marca + ", um="
+		return "Produto [cdProduto=" + cdProduto + ", desc=" + desc + ", valor=" + valor + ", marca=" + marca + ", um="
 				+ um + "]";
 	}
 	

@@ -2,28 +2,44 @@ package Entity;
 
 public class Estoque {
 
-	private Integer idEstoque;
-	private Integer idProduto;
+	private Integer cdEstoque;
+	private Integer cdProduto;
 	private Integer quantidade;
 
 	public Estoque() {
 
 	}
+	
 
-	public Integer getIdEstoque() {
-		return idEstoque;
+	public Estoque(Integer cdProduto, Integer quantidade) {
+		super();
+		this.cdProduto = cdProduto;
+		this.quantidade = quantidade;
 	}
 
-	public void setIdEstoque(Integer idEstoque) {
-		this.idEstoque = idEstoque;
+
+	public Estoque(Integer cdEstoque, Integer cdProduto, Integer quantidade) {
+		super();
+		this.cdEstoque = cdEstoque;
+		this.cdProduto = cdProduto;
+		this.quantidade = quantidade;
 	}
 
-	public Integer getIdProduto() {
-		return idProduto;
+
+	public Integer getCdEstoque() {
+		return cdEstoque;
 	}
 
-	public void setIdProduto(Integer idProduto) {
-		this.idProduto = idProduto;
+	public void setCdEstoque(Integer cdEstoque) {
+		this.cdEstoque = cdEstoque;
+	}
+
+	public Integer getcdProduto() {
+		return cdProduto;
+	}
+
+	public void setCdProduto(Integer idProduto) {
+		this.cdProduto = idProduto;
 	}
 
 	public Integer getQuantidade() {
@@ -36,7 +52,7 @@ public class Estoque {
 
 	@Override
 	public String toString() {
-		return "Estoque [idEstoque=" + idEstoque + ", idProduto=" + idProduto + ", quantidade=" + quantidade + "]";
+		return "Estoque [idEstoque=" + cdEstoque + ", idProduto=" + cdProduto + ", quantidade=" + quantidade + "]";
 	}
 
 

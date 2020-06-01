@@ -1,35 +1,42 @@
 package Entity;
 
-import java.sql.Date;
-
 public class Venda {
 
-	private Integer idVenda;
-	private Date data;
+	private Integer cdVenda;
+	private String data;
 
 	public Venda() {
 
 	}
-
-	public Integer getIdVenda() {
-		return idVenda;
+	public Venda(String data) {
+		super();
+		this.data = data;
+	}
+	public Venda(Integer cdVenda, String data) {
+		super();
+		this.cdVenda = cdVenda;
+		this.data = data;
 	}
 
-	public void setIdVenda(Integer idVenda) {
-		this.idVenda = idVenda;
+	public Integer getcdVenda() {
+		return cdVenda;
 	}
 
-	public Date getData() {
+	public void setcdVenda(Integer cdVenda) {
+		this.cdVenda = cdVenda;
+	}
+
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
 	@Override
 	public String toString() {
-		return "Venda [idVenda=" + idVenda + ", data=" + data + "]";
+		return "Venda [cdVenda=" + cdVenda + ", data=" + data + "]";
 	}
 
 

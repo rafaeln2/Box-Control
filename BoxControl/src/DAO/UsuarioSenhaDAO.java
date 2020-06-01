@@ -7,13 +7,13 @@ import Entity.UsuarioSenha;
 
 public interface UsuarioSenhaDAO {
 
-public void createEntity(UsuarioSenha usuarioSenha) throws Exception;
-	
-	public void updateEntity(UsuarioSenha usuarioSenha)throws Exception;
-	
-	public UsuarioSenha findEntity(UsuarioSenha usuarioSenha)throws Exception;
-	
-	public void dropEntity(UsuarioSenha usuarioSenha)throws Exception;
-	
-	Collection<UsuarioSenhaDAO> list()throws Exception;
+	public void create(UsuarioSenha usuarioSenha) throws Exception;
+
+	public void read(Integer cdUsuarioSenha)throws Exception;
+
+	public void update(Integer cdUsuarioSenha, String toUpdate)throws Exception;
+
+	public void delete(Integer cdUsuarioSenha)throws Exception;
+
+	Collection<UsuarioSenha> list()throws Exception;
 }

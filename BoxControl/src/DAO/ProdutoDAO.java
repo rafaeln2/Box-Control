@@ -7,13 +7,13 @@ import Entity.Produto;
 
 public interface ProdutoDAO {
 
-public void createEntity(Produto produto) throws Exception;
-	
-	public void updateEntity(Produto produto)throws Exception;
-	
-	public Produto findEntity(Produto produto)throws Exception;
-	
-	public void dropEntity(Produto produto)throws Exception;
-	
+	public void create(Produto produto) throws Exception;
+
+	public void read(Integer cdProduto)throws Exception;
+
+	public void update(Integer cdProduto, String toUpdate)throws Exception;
+
+	public void delete(Integer cdProduto)throws Exception;
+
 	Collection<Produto> list()throws Exception;
 }

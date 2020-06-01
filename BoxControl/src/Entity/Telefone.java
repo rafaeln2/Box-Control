@@ -2,51 +2,61 @@ package Entity;
 
 public class Telefone {
 
-	private Integer idTelefone;
+	private Integer cdTelefone;
+	private String tipoTelefone; //enum
 	private String ddd;
 	private String numero;
-	private Integer idPessoa;
-
-	public Telefone() {
+	private Integer cdPessoa;
+	public Telefone(Integer cdTelefone, String tipoTelefone, String ddd, String numero, Integer cdPessoa) {
+		super();
+		this.cdTelefone = cdTelefone;
+		this.tipoTelefone = tipoTelefone;
+		this.ddd = ddd;
+		this.numero = numero;
+		this.cdPessoa = cdPessoa;
 	}
-
-	public Integer getIdTelefone() {
-		return idTelefone;
+	public Telefone(String tipoTelefone, String ddd, String numero, Integer cdPessoa) {
+		super();
+		this.tipoTelefone = tipoTelefone;
+		this.ddd = ddd;
+		this.numero = numero;
+		this.cdPessoa = cdPessoa;
 	}
-
-	public void setIdTelefone(Integer idTelefone) {
-		this.idTelefone = idTelefone;
+	public Integer getCdTelefone() {
+		return cdTelefone;
 	}
-
+	public void setCdTelefone(Integer cdTelefone) {
+		this.cdTelefone = cdTelefone;
+	}
+	public String getTipoTelefone() {
+		return tipoTelefone;
+	}
+	public void setTipoTelefone(String tipoTelefone) {
+		this.tipoTelefone = tipoTelefone;
+	}
 	public String getDdd() {
 		return ddd;
 	}
-
 	public void setDdd(String ddd) {
 		this.ddd = ddd;
 	}
-
 	public String getNumero() {
 		return numero;
 	}
-
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-
-	public Integer getIdPessoa() {
-		return idPessoa;
+	public Integer getCdPessoa() {
+		return cdPessoa;
 	}
-
-	public void setIdPessoa(Integer idPessoa) {
-		this.idPessoa = idPessoa;
+	public void setCdPessoa(Integer cdPessoa) {
+		this.cdPessoa = cdPessoa;
 	}
-
 	@Override
 	public String toString() {
-		return "Telefone [idTelefone=" + idTelefone + ", ddd=" + ddd + ", numero=" + numero + ", idPessoa=" + idPessoa
-				+ "]";
-	}
+		return "Telefone [cdTelefone=" + cdTelefone + ", tipoTelefone=" + tipoTelefone + ", ddd=" + ddd + ", numero="
+				+ numero + ", cdPessoa=" + cdPessoa + "]";
+	} 
 
 
 }
