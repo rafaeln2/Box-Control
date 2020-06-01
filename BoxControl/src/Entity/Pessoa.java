@@ -33,6 +33,7 @@ public class Pessoa {
 		this.cdPessoa = cdPessoa;
 		return this;
 	}
+	}
 
 	public String getCpf() {
 		return cpf;
