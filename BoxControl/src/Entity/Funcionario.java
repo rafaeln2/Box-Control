@@ -2,28 +2,58 @@ package Entity;
 
 public class Funcionario {
 
-	private Integer idFuncionario;
-	private Double salario;
+	private Integer cdfuncionario;
+	private Float salario;
+	private Integer cdPessoa;
 	private Integer cdCargo;
-	private Integer idUsuarioSenha;
+	private Integer cdUs;
 
-	private Funcionario() {
+	public Funcionario() {
 
 	}
-
-	public Integer getIdFuncionario() {
-		return idFuncionario;
+	
+	
+	public Funcionario(Float salario, Integer cdPessoa, Integer cdCargo, Integer cdUs) {
+		super();
+		this.salario = salario;
+		this.cdPessoa = cdPessoa;
+		this.cdCargo = cdCargo;
+		this.cdUs = cdUs;
 	}
 
-	public void setIdFuncionario(Integer idFuncionario) {
-		this.idFuncionario = idFuncionario;
+
+	public Funcionario(Integer cdfuncionario, Float salario, Integer cdPessoa, Integer cdCargo, Integer cdUs) {
+		super();
+		this.cdfuncionario = cdfuncionario;
+		this.salario = salario;
+		this.cdPessoa = cdPessoa;
+		this.cdCargo = cdCargo;
+		this.cdUs = cdUs;
 	}
 
-	public Double getSalario() {
+
+	public Integer getcdfuncionario() {
+		return cdfuncionario;
+	}
+
+	public void setcdfuncionario(Integer cdfuncionario) {
+		this.cdfuncionario = cdfuncionario;
+	}
+
+	public Float getSalario() {
 		return salario;
 	}
+	
 
-	public void setSalario(Double salario) {
+	public Integer getCdPessoa() {
+		return cdPessoa;
+	}
+
+	public void setCdPessoa(Integer cdPessoa) {
+		this.cdPessoa = cdPessoa;
+	}
+
+	public void setSalario(Float salario) {
 		this.salario = salario;
 	}
 
@@ -35,19 +65,18 @@ public class Funcionario {
 		this.cdCargo = cdCargo;
 	}
 
-	public Integer getIdUsuarioSenha() {
-		return idUsuarioSenha;
+	public Integer getcdUs() {
+		return cdUs;
 	}
 
-	public void setIdUsuarioSenha(Integer idUsuarioSenha) {
-		this.idUsuarioSenha = idUsuarioSenha;
+	public void setcdUs(Integer cdUs) {
+		this.cdUs = cdUs;
 	}
 
 	@Override
 	public String toString() {
-		return "Funcionario [idFuncionario=" + idFuncionario + ", salario=" + salario + ", cdCargo=" + cdCargo
-				+ ", idUsuarioSenha=" + idUsuarioSenha + "]";
+		return "Funcionario [cdfuncionario=" + cdfuncionario + ", salario=" + salario + ", cdCargo=" + cdCargo
+				+ ", cdUs=" + cdUs + "]";
 	}
-
 
 }

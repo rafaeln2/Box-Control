@@ -8,7 +8,7 @@ public interface CargoDAO {
 
 		public void create(Cargo cargo) throws Exception;
 		
-		public Cargo read(Integer cdCargo)throws Exception;
+		public void read(Integer cdCargo)throws Exception;
 
 		public void update(Integer cdCargo, String toUpdate)throws Exception;
 		

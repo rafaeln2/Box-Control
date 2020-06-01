@@ -12,6 +12,19 @@ public class Carrinho {
 	
 	public Carrinho() {
 	}
+	
+	public Carrinho(Integer cdcarrinho, Integer cdFuncionario, Integer cdVenda, Integer cdProduto, Integer quantidade,
+			Integer nu_caixa, String tipoPagamento) {
+		super();
+		this.cdcarrinho = cdcarrinho;
+		this.cdFuncionario = cdFuncionario;
+		this.cdVenda = cdVenda;
+		this.cdProduto = cdProduto;
+		this.quantidade = quantidade;
+		this.nu_caixa = nu_caixa;
+		this.tipoPagamento = tipoPagamento;
+	}
+
 	public Carrinho(Integer cdFuncionario, Integer cdVenda, Integer cdProduto, Integer quantidade, Integer nu_caixa, String tipoPagamento) {
 		this.cdFuncionario = cdFuncionario;
 		this.cdVenda = cdVenda;

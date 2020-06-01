@@ -42,42 +42,41 @@ public class PessoaImp implements PessoaDAO {
 	}
 
 	@Override
-	public Pessoa read(Integer idPessoa) throws Exception {
+	public void read(Integer cdpessoa) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-		
+
 		stm = conn.prepareStatement("select * from pessoa as p left join funcionario as f ON p.cdpessoa = f.cdpessoa where p.cdpessoa = (?) order by p.cdpessoa");
-		stm.setInt(1, idPessoa);
-	
+		stm.setInt(1, cdpessoa);
+
 		rs = stm.executeQuery();
 
 		ResultSetMetaData rsmd = rs.getMetaData();
-		
+
 		int columnsNumber = rsmd.getColumnCount();
-		
+
 		while(rs.next()) {
 			for(int i = 1; i <= columnsNumber; i++) {
-				System.out.printf("[%s: %s] %n", rsmd.getColumnName(i), rs.getString(i) );
+				System.out.printf("{%s: %s} %n", rsmd.getColumnName(i), rs.getString(i));
 			}
-		};
-		return null;
+		}
 	}
 
 	@Override
-	public void update(Integer idPessoa, String toUpdate) throws Exception {
+	public void update(Integer cdpessoa, String toUpdate) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
 
 		stm = conn.prepareStatement("UPDATE pessoa SET nome = (?) where cdpessoa = (?)");
 		stm.setString(1, toUpdate);
-		stm.setInt(2, idPessoa);
+		stm.setInt(2, cdpessoa);
 		stm.executeUpdate();
 	}
 
 	@Override
-	public void delete(Integer idPessoa) throws Exception {
+	public void delete(Integer cdpessoa) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
 
 		stm = conn.prepareStatement("delete from pessoa where cdpessoa = (?)");
-		stm.setInt(1, idPessoa);
+		stm.setInt(1, cdpessoa);
 		stm.executeUpdate();
 	}
 
@@ -95,11 +94,10 @@ public class PessoaImp implements PessoaDAO {
 			String cpf = rs.getString("cpf");
 			String nome = rs.getString("nome");
 			String dataNasc = rs.getString("data_nasc");
-		
 
 			peoples.add(new Pessoa(cdPessoa, cpf, nome, dataNasc));
 		}
 		return peoples;
 	}
-
+	
 }

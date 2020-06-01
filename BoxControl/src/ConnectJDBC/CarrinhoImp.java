@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +18,7 @@ public class CarrinhoImp implements CarrinhoDAO {
 	private PreparedStatement stm;
 	private ResultSet rs;
 	private Statement sttm;
-	
+
 	@Override
 	public void create(Carrinho carrinho) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
@@ -27,7 +28,7 @@ public class CarrinhoImp implements CarrinhoDAO {
 		rs.next();
 
 		Integer id = rs.getInt(1);
-		
+
 		stm = conn.prepareStatement("insert into carrinho(cdcarrinho, cdfuncionario, cdvenda, cdproduto, quantidade, nu_caixa, tipo_pagamento) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 		stm.setInt(1, id);
@@ -37,30 +38,28 @@ public class CarrinhoImp implements CarrinhoDAO {
 		stm.setInt(5, carrinho.getQuantidade());
 		stm.setInt(6, carrinho.getNu_caixa());
 		stm.setString(7, carrinho.getTipoPagamento());
-		
-		carrinho.setCdcarrinho(id);		
 
 		stm.executeUpdate();
-
 	}
-
+	
 	@Override
-	public Carrinho read(Integer idCarrinho) throws Exception {
+	public void read(Integer idCarrinho) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-		
+
 		stm = conn.prepareStatement("select * from carrinho where cdcarrinho = (?)");
 		stm.setInt(1, idCarrinho);
 
 		rs = stm.executeQuery();
+		
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		int columnsNumber = rsmd.getColumnCount();
 
 		while(rs.next()) {
-			System.out.printf("cdcarrinho: %d, %n cdfuncionario: %d, %n cdvenda: %d, %n cdproduto: %d, %n quantidade: %d, %n nu_caixa: %d, %n tipo_pagamento: %s" ,
-					rs.getInt("cdcarrinho"), rs.getInt("cdfuncionario"), rs.getInt("cdvenda"), rs.getInt("cdproduto"), rs.getInt("quantidade"), rs.getInt("nu_caixa"), rs.getString("tipo_pagamento"));
-
-			//System.out.println("nivelacesso: " + rs.getInt("nivelacesso")+ ", ");
-			//System.out.println("nm_cargo: " + rs.getString("nm_cargo")+", ");
-		};
-		return null;
+			for(int i = 1; i <= columnsNumber; i++) {
+				System.out.printf("{%s: %s} %n", rsmd.getColumnName(i), rs.getString(i));
+			}
+		}
 	}
 
 	@Override
@@ -92,16 +91,20 @@ public class CarrinhoImp implements CarrinhoDAO {
 
 		rs = stm.executeQuery();
 
-		Collection<Cargo> cargos= new ArrayList<>();
+		Collection<Carrinho> carrinhos = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdcargo = rs.getInt("cdcargo");
-			Integer nivelacesso = rs.getInt("nivelacesso");
-			String nm_cargo = rs.getString("nm_cargo");
-
-			cargos.add(new Cargo(cdcargo, nivelacesso, nm_cargo));
+			Integer cdCarrinho = rs.getInt("cdcarrinho");
+			Integer cdFuncionario = rs.getInt("cdfuncionario");
+			Integer cdvenda = rs.getInt("cdvenda");
+			Integer cdProduto = rs.getInt("cdproduto");
+			Integer quantidade = rs.getInt("quantidade");
+			Integer nuCaixa = rs.getInt("nu_caixa");
+			String tipoPagamento = rs.getString("tipo_pagamento");
+			
+			carrinhos.add(new Carrinho(cdCarrinho, cdFuncionario, cdvenda, cdProduto, quantidade, nuCaixa, tipoPagamento));
 		}
-		return null;
+		return carrinhos;
 	}
 
 }

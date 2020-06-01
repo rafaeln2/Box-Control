@@ -6,13 +6,13 @@ import Entity.Endereco;
 
 public interface EnderecoDAO {
 
-	public void createEntity(Endereco endereco) throws Exception;
+	public void create(Endereco endereco) throws Exception;
 	
-	public void updateEntity(Endereco endereco)throws Exception;
+	public void read(Integer cdEndereco)throws Exception;
 	
-	public Endereco findEntity(Endereco endereco)throws Exception;
+	public void update(Integer cdEndereco, String toUpdate)throws Exception;
 	
-	public void dropEntity(Endereco endereco)throws Exception;
+	public void delete(Integer cdEndereco)throws Exception;
 	
 	Collection<Endereco> list()throws Exception;
 }

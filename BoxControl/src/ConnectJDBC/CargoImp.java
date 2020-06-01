@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,63 +37,64 @@ public class CargoImp implements CargoDAO {
 		cargo.setCdCargo(id);		
 
 		stm.executeUpdate();
-
 	}
 
 	@Override
-	public Cargo read(Integer cdCargo) throws Exception {
+	public void read(Integer cdCargo) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-		stm = conn.prepareStatement("select * from cargo where cdcargo = (?)");
+		stm = conn.prepareStatement("select * from cargo c JOIN funcionario f ON c.cdcargo = f.cdcargo where f.cdcargo = (?)");
 		stm.setInt(1, cdCargo);
 
 		rs = stm.executeQuery();
 
-		while(rs.next()) {
-			System.out.println("cdcargo: " + rs.getInt("cdcargo") + ", ");
-			System.out.println("nivelacesso: " + rs.getInt("nivelacesso")+ ", ");
-			System.out.println("nm_cargo: " + rs.getString("nm_cargo")+", ");
-		};
-		return null;
-	}
+		ResultSetMetaData rsmd = rs.getMetaData();
 
-	@Override
-	public void update(Integer cdCargo, String toUpdate) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
-		stm = conn.prepareStatement("UPDATE cargo SET nm_cargo = (?) where cdcargo = (?)");
-
-		stm.setString(1, toUpdate);
-		stm.setInt(2, cdCargo);
-
-		stm.executeUpdate();
-	}
-
-	@Override
-	public void delete(Integer cdCargo) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
-		stm = conn.prepareStatement("delete from cargo where cdcargo = (?)");
-		stm.setInt(1, cdCargo);
-		stm.executeUpdate();
-	}
-
-	@Override
-	public Collection<Cargo> list() throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
-		stm = conn.prepareStatement("select * from cargo order by cdcargo");
-
-		rs = stm.executeQuery();
-
-		Collection<Cargo> cargos= new ArrayList<>();
+		int columnsNumber = rsmd.getColumnCount();
 
 		while(rs.next()) {
-			Integer cdcargo = rs.getInt("cdcargo");
-			Integer nivelacesso = rs.getInt("nivelacesso");
-			String nm_cargo = rs.getString("nm_cargo");
-
-			cargos.add(new Cargo(cdcargo, nivelacesso, nm_cargo));
+			for(int i = 1; i <= columnsNumber; i++) {
+				System.out.printf("{%s: %s} %n", rsmd.getColumnName(i), rs.getString(i));
+			}
 		}
-		return cargos;	
 	}
-}
+			@Override
+			public void update(Integer cdCargo, String toUpdate) throws Exception {
+				conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
+
+				stm = conn.prepareStatement("UPDATE cargo SET nm_cargo = (?) where cdcargo = (?)");
+
+				stm.setString(1, toUpdate);
+				stm.setInt(2, cdCargo);
+
+				stm.executeUpdate();
+			}
+
+			@Override
+			public void delete(Integer cdCargo) throws Exception {
+				conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
+
+				stm = conn.prepareStatement("delete from cargo where cdcargo = (?)");
+				stm.setInt(1, cdCargo);
+				stm.executeUpdate();
+			}
+
+			@Override
+			public Collection<Cargo> list() throws Exception {
+				conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
+
+				stm = conn.prepareStatement("select * from cargo order by cdcargo");
+
+				rs = stm.executeQuery();
+
+				Collection<Cargo> cargos= new ArrayList<>();
+
+				while(rs.next()) {
+					Integer cdcargo = rs.getInt("cdcargo");
+					Integer nivelacesso = rs.getInt("nivelacesso");
+					String nm_cargo = rs.getString("nm_cargo");
+
+					cargos.add(new Cargo(cdcargo, nivelacesso, nm_cargo));
+				}
+				return cargos;	
+			}
+		}

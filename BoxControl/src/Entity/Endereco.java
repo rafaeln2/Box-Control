@@ -2,25 +2,50 @@ package Entity;
 
 public class Endereco {
 	
-	private Integer idEndereco;
+	private Integer cdEndereco;
 	private String rua;
 	private String nuEndereco;
 	private String bairro;
 	private String cidade;
 	private String estado;
 	private String cep;
-	private String idPessoa;
+	private Integer cdPessoa;
 	
 	public Endereco() {
 		
 	}
 
+	public Endereco(String rua, String nuEndereco, String bairro, String cidade, String estado, String cep,
+			Integer cdPessoa) {
+		super();
+		this.rua = rua;
+		this.nuEndereco = nuEndereco;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.cep = cep;
+		this.cdPessoa = cdPessoa;
+	}
+
+	public Endereco(Integer cdEndereco, String rua, String nuEndereco, String bairro, String cidade, String estado,
+			String cep, Integer cdPessoa) {
+		super();
+		this.cdEndereco = cdEndereco;
+		this.rua = rua;
+		this.nuEndereco = nuEndereco;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.cep = cep;
+		this.cdPessoa = cdPessoa;
+	}
+
 	public Integer getIdEndereco() {
-		return idEndereco;
+		return cdEndereco;
 	}
 
 	public void setIdEndereco(Integer idEndereco) {
-		this.idEndereco = idEndereco;
+		this.cdEndereco = idEndereco;
 	}
 
 	public String getRua() {
@@ -71,18 +96,18 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	public String getIdPessoa() {
-		return idPessoa;
+	public Integer getCdPessoa() {
+		return cdPessoa;
 	}
 
-	public void setIdPessoa(String idPessoa) {
-		this.idPessoa = idPessoa;
+	public void setCdPessoa(Integer cdPessoa) {
+		this.cdPessoa = cdPessoa;
 	}
 
 	@Override
 	public String toString() {
-		return "Endereco [idEndereco=" + idEndereco + ", rua=" + rua + ", nuEndereco=" + nuEndereco + ", bairro="
-				+ bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep=" + cep + ", idPessoa=" + idPessoa
+		return "Endereco [idEndereco=" + cdEndereco + ", rua=" + rua + ", nuEndereco=" + nuEndereco + ", bairro="
+				+ bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep=" + cep + ", cdPessoa=" + cdPessoa
 				+ "]";
 	}
 	

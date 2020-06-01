@@ -9,7 +9,7 @@ public interface CarrinhoDAO {
 	
 	public void create(Carrinho carrinho) throws Exception;
 
-	public Carrinho read(Integer cdCarrinho)throws Exception;
+	public void read(Integer cdCarrinho)throws Exception;
 
 	public void update(Integer cdCarrinho, String toUpdate)throws Exception;
 
