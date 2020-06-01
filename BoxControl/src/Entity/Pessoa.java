@@ -1,17 +1,13 @@
 package Entity;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class Pessoa {
 
-	private Integer idPessoa;
+	private Integer cdPessoa;
 	private String cpf;
 	private String nome;
 	private String dataNasc;
-	
-	List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	
 	public Pessoa() {
 	}
@@ -20,23 +16,21 @@ public class Pessoa {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.dataNasc = date;
-		this.pessoas.add(this);
 	}
 
-	public Pessoa(Integer idPessoa, String cpf, String nome, String date) {
-		this.idPessoa = idPessoa;
+	public Pessoa(Integer cdPessoa, String cpf, String nome, String date) {
+		this.cdPessoa = cdPessoa;
 		this.cpf = cpf;
 		this.nome = nome;
 		this.dataNasc = date;
-		this.pessoas.add(this);
 	}
 
-	public Integer getIdPessoa() {
-		return idPessoa;
+	public Integer getcdPessoa() {
+		return cdPessoa;
 	}
 
-	public Pessoa setIdPessoa(Integer idPessoa) {
-		this.idPessoa = idPessoa;
+	public Pessoa setcdPessoa(Integer cdPessoa) {
+		this.cdPessoa = cdPessoa;
 		return this;
 	}
 
@@ -66,7 +60,7 @@ public class Pessoa {
 	}
 	@Override
 	public String toString() {
-		return "\n Pessoa [id_pessoa= " + idPessoa + ", cpf= " + cpf + ", nome= " + nome + ", dataNasc= " + dataNasc + "]";
+		return "\n Pessoa [id_pessoa= " + cdPessoa + ", cpf= " + cpf + ", nome= " + nome + ", dataNasc= " + dataNasc + "]";
 	}
 	
 	
