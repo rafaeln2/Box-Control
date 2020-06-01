@@ -64,7 +64,7 @@ public class EnderecoImp implements EnderecoDAO{
 	public void update(Integer cdEndereco, String toUpdate) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
 
-		stm = conn.prepareStatement("UPDATE endereco SET nome = (?) where cdendereco = (?)");
+		stm = conn.prepareStatement("UPDATE endereco SET rua = (?) where cdendereco = (?)");
 		stm.setString(1, toUpdate);
 		stm.setInt(2, cdEndereco);
 		stm.executeUpdate();

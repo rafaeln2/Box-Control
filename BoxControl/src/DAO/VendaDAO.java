@@ -2,8 +2,10 @@ package DAO;
 
 import java.util.Collection;
 
+import Entity.Venda;
 
-public interface Venda {
+
+public interface VendaDAO {
 
 	public void create(Venda venda) throws Exception;
 

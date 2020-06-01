@@ -15,5 +15,5 @@ public interface UsuarioSenhaDAO {
 
 	public void delete(Integer cdUsuarioSenha)throws Exception;
 
-	Collection<UsuarioSenhaDAO> list()throws Exception;
+	Collection<UsuarioSenha> list()throws Exception;
 }

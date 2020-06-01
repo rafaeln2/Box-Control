@@ -59,8 +59,8 @@ public class EstoqueImp implements EstoqueDAO {
 	public void update(Integer cdEstoque, String toUpdate) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
 
-		stm = conn.prepareStatement("UPDATE estoque SET nome = (?) where cdestoque = (?)");
-		stm.setString(1, toUpdate);
+		stm = conn.prepareStatement("UPDATE estoque SET cdproduto = (?) where cdestoque = (?)");
+		stm.setInt(1, Integer.parseInt(toUpdate));
 		stm.setInt(2, cdEstoque);
 		stm.executeUpdate();
 	}

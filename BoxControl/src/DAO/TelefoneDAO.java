@@ -9,7 +9,7 @@ public interface TelefoneDAO {
 
 	public void create(Telefone telefone) throws Exception;
 
-	public void create(Integer cdTelefone)throws Exception;
+	public void read(Integer cdTelefone)throws Exception;
 
 	public void update(Integer cdTelefone, String toUpdate)throws Exception;
 

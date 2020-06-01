@@ -15,14 +15,9 @@ public class Principal {
 			try {
 				Class.forName("org.postgresql.Driver");
 
-				conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "postgres", "danield5"); 
-
-				PessoaDAO pessoa = new PessoaImp();
-				CargoDAO cargo = new CargoImp();
-				EnderecoDAO endereco = new EnderecoImp();
+				conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin"); 
 				
-				endereco.read(5);
-				/*
+				/* execute seu código
 				 * 
 				 * 
 				 * 

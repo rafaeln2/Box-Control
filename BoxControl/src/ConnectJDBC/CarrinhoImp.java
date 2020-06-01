@@ -66,9 +66,9 @@ public class CarrinhoImp implements CarrinhoDAO {
 	public void update(Integer cdCarrinho, String toUpdate) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
 
-		stm = conn.prepareStatement("UPDATE carrinho SET  = (?) where cdcarrinho = (?)");
+		stm = conn.prepareStatement("UPDATE carrinho SET cdvenda = (?) where cdcarrinho = (?)");
 
-		stm.setString(1, toUpdate);
+		stm.setInt(1, Integer.parseInt(toUpdate));
 		stm.setInt(2, cdCarrinho);
 
 		stm.executeUpdate();

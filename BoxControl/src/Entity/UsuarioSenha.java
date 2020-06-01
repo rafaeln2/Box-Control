@@ -2,7 +2,7 @@ package Entity;
 
 public class UsuarioSenha {
 
-	private Integer idUsuarioSenha;
+	private Integer cdUsuarioSenha;
 	private String usuario;
 	private String senha;
 	
@@ -10,12 +10,25 @@ public class UsuarioSenha {
 		
 	}
 
-	public Integer getIdUsuarioSenha() {
-		return idUsuarioSenha;
+	public UsuarioSenha(String usuario, String senha) {
+		super();
+		this.usuario = usuario;
+		this.senha = senha;
 	}
 
-	public void setIdUsuarioSenha(Integer idUsuarioSenha) {
-		this.idUsuarioSenha = idUsuarioSenha;
+	public UsuarioSenha(Integer cdUsuarioSenha, String usuario, String senha) {
+		super();
+		this.cdUsuarioSenha = cdUsuarioSenha;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+
+	public Integer getcdUsuarioSenha() {
+		return cdUsuarioSenha;
+	}
+
+	public void setcdUsuarioSenha(Integer cdUsuarioSenha) {
+		this.cdUsuarioSenha = cdUsuarioSenha;
 	}
 
 	public String getUsuario() {
@@ -36,7 +49,7 @@ public class UsuarioSenha {
 
 	@Override
 	public String toString() {
-		return "UsuarioSenha [idUsuarioSenha=" + idUsuarioSenha + ", usuario=" + usuario + ", senha=" + senha + "]";
+		return "UsuarioSenha [cdUsuarioSenha=" + cdUsuarioSenha + ", usuario=" + usuario + ", senha=" + senha + "]";
 	}
 	
 	

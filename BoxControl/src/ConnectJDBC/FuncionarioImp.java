@@ -60,8 +60,8 @@ public class FuncionarioImp implements FuncionarioDAO {
 	public void update(Integer cdFuncionario, String toUpdate) throws Exception {
 		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
 
-		stm = conn.prepareStatement("UPDATE funcionario SET nome = (?) where CDFUNCIONARIO = (?)");
-		stm.setString(1, toUpdate);
+		stm = conn.prepareStatement("UPDATE funcionario SET salario = (?) where CDFUNCIONARIO = (?)");
+		stm.setDouble(1, Double.parseDouble(toUpdate));
 		stm.setInt(2, cdFuncionario);
 		stm.executeUpdate();
 	}
