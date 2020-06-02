@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.Collection;
 
-import Entity.Pessoa;
+import entity.Pessoa;
 
 public interface PessoaDAO {
 

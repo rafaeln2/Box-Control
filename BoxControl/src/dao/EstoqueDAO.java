@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.Collection;
 
-import Entity.Estoque;
+import entity.Estoque;
 
 
 public interface EstoqueDAO {

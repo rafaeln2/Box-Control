@@ -1,6 +1,4 @@
-package Entity;
-
-import java.util.ArrayList;
+package entity;
 
 public class Pessoa {
 
@@ -32,7 +30,6 @@ public class Pessoa {
 	public Pessoa setcdPessoa(Integer cdPessoa) {
 		this.cdPessoa = cdPessoa;
 		return this;
-	}
 	}
 
 	public String getCpf() {

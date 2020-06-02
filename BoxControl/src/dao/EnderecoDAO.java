@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.Collection;
 
-import Entity.Endereco;
+import entity.Endereco;
 
 public interface EnderecoDAO {
 

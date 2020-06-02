@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.Collection;
 
-import Entity.Funcionario;
+import entity.Funcionario;
 
 public interface FuncionarioDAO {
 	

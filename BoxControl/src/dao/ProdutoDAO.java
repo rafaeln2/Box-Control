@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.Collection;
 
-import Entity.Produto;
+import entity.Produto;
 
 
 public interface ProdutoDAO {
