@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.Collection;
 
-import Entity.Telefone;
+import entity.Telefone;
 
 
 public interface TelefoneDAO {

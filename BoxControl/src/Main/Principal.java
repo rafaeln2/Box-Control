@@ -17,6 +17,13 @@ public class Principal {
 
 				conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin"); 
 				
+				Cargo c1 = new Cargo(1, "Digitador");
+				
+				CargoDAO cargo = new CargoImp();
+				
+				cargo.read(5);
+				
+				
 				/* execute seu código
 				 * 
 				 * 

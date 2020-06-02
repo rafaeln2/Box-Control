@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.Collection;
 
-import Entity.UsuarioSenha;
+import entity.UsuarioSenha;
 
 
 public interface UsuarioSenhaDAO {
