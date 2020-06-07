@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import DAO.FuncionarioDAO;
-import Entity.Funcionario;
+import dao.FuncionarioDAO;
+import entity.Funcionario;
 
 public class FuncionarioImp implements FuncionarioDAO {
 	private Connection conn = null; 

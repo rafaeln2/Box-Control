@@ -10,8 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import DAO.PessoaDAO;
-import Entity.Pessoa;
+
+import dao.PessoaDAO;
+import entity.Pessoa;
 
 public class PessoaImp implements PessoaDAO {
 	private Connection conn = null; 

@@ -2,7 +2,7 @@ package dao;
 
 import java.util.Collection;
 
-import Entity.Venda;
+import entity.Venda;
 
 
 public interface VendaDAO {

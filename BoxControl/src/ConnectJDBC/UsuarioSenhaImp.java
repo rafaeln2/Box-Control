@@ -9,9 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import DAO.UsuarioSenhaDAO;
-import Entity.Telefone;
-import Entity.UsuarioSenha;
+import dao.UsuarioSenhaDAO;
+import entity.Telefone;
+import entity.UsuarioSenha;
 
 public class UsuarioSenhaImp implements UsuarioSenhaDAO {
 	private Connection conn = null; 

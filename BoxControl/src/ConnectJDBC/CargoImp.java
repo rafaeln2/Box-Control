@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import DAO.CargoDAO;
-import Entity.Cargo;
+import dao.CargoDAO;
+import entity.Cargo;
 
 public class CargoImp implements CargoDAO {
 	private Connection conn = null; 
