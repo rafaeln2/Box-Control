@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import DAO.TelefoneDAO;
-import Entity.Telefone;
+import dao.TelefoneDAO;
+import entity.Telefone;
 
 public class TelefoneImp implements TelefoneDAO {
 	private Connection conn = null; 

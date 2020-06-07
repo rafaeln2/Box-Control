@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import ConnectJDBC.*;
-import DAO.*;
-import Entity.*;
+import dao.*;
+import entity.*;
 
 public class Principal {
 		public static void main(String[] args) {

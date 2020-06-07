@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import DAO.VendaDAO;
-import Entity.Telefone;
-import Entity.Venda;
+import dao.VendaDAO;
+import entity.Telefone;
+import entity.Venda;
 
 public class VendaImp implements VendaDAO {
 	private Connection conn = null; 

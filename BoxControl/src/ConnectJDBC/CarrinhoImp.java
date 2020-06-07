@@ -9,9 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import DAO.CarrinhoDAO;
-import Entity.Cargo;
-import Entity.Carrinho;
+import dao.CarrinhoDAO;
+import entity.Cargo;
+import entity.Carrinho;
 
 public class CarrinhoImp implements CarrinhoDAO {
 	private Connection conn = null; 

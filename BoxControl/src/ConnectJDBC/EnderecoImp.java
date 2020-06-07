@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import DAO.EnderecoDAO;
-import Entity.Endereco;
+import dao.EnderecoDAO;
+import entity.Endereco;
 
 public class EnderecoImp implements EnderecoDAO{
 	private Connection conn = null; 

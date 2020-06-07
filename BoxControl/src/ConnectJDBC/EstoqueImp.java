@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import DAO.EstoqueDAO;
-import Entity.Estoque;
+import dao.EstoqueDAO;
+import entity.Estoque;
 
 public class EstoqueImp implements EstoqueDAO {
 	private Connection conn = null; 

@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import DAO.ProdutoDAO;
-import Entity.Produto;
+import dao.ProdutoDAO;
+import entity.Produto;
 
 public class ProdutoImp implements ProdutoDAO {
 	private Connection conn = null; 
