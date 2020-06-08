@@ -1,5 +1,7 @@
 package entity;
 
+import java.sql.Date;
+
 public class Pessoa {
 	
 	protected String cpf;

@@ -29,7 +29,7 @@ public class PessoaImp implements PessoaDAO {
 		Date dataAtt = formatter.parse(data);
 
 		sttm = conn.createStatement();
-		rs = sttm.executeQuery("select nextval('pessoa_cdpessoa_seq')");
+		rs = sttm.executeQuery("select max(cdpessoa)+1 from pessoa;");
 		rs.next();
 		int cdPessoa = rs.getInt(1);
 		pessoa.setCdPessoa(cdPessoa);

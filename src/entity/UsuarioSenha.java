@@ -6,10 +6,6 @@ public class UsuarioSenha {
 	private String usuario;
 	private String senha;
 	
-	public UsuarioSenha() {
-		
-	}
-
 	public UsuarioSenha(String usuario, String senha) {
 		super();
 		this.usuario = usuario;

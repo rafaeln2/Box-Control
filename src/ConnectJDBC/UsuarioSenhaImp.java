@@ -83,11 +83,11 @@ public class UsuarioSenhaImp implements UsuarioSenhaDAO {
 		Collection<UsuarioSenha> acesso = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdus = rs.getInt("CDUS");
+			int cdus = rs.getInt("CDUS");
 			String usuario = rs.getString("USUARIO");
 			String senha = rs.getString("SENHA");
 
-			acesso.add(new UsuarioSenha(cdus, usuario, senha));
+			acesso.add(new UsuarioSenha(usuario, senha));
 		}
 		return acesso;
 	}
