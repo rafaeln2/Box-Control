@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+<<<<<<< HEAD:BoxControl/src/ConnectJDBC/PessoaImp.java
+=======
+import GetConnection.GetConnection;
+>>>>>>> teste:src/ConnectJDBC/PessoaImp.java
 import dao.PessoaDAO;
 import entity.Pessoa;
 
@@ -22,10 +26,10 @@ public class PessoaImp implements PessoaDAO {
 
 	@Override
 	public void create(Pessoa pessoa) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-		String data = pessoa.getDataNasc(); 
+		String data = pessoa.getDataNascimento(); 
 		Date dataAtt = formatter.parse(data);
 
 		sttm = conn.createStatement();
@@ -91,7 +95,7 @@ public class PessoaImp implements PessoaDAO {
 		Collection<Pessoa> peoples = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdPessoa = rs.getInt("cdpessoa");
+			int cdPessoa = rs.getInt("cdpessoa");
 			String cpf = rs.getString("cpf");
 			String nome = rs.getString("nome");
 			String dataNasc = rs.getString("data_nasc");

@@ -9,6 +9,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+<<<<<<< HEAD:BoxControl/src/ConnectJDBC/TelefoneImp.java
+=======
+import GetConnection.GetConnection;
+>>>>>>> teste:src/ConnectJDBC/TelefoneImp.java
 import dao.TelefoneDAO;
 import entity.Telefone;
 
@@ -20,8 +24,8 @@ public class TelefoneImp implements TelefoneDAO {
 
 	@Override
 	public void create(Telefone telefone) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		sttm = conn.createStatement();
 
 		rs = sttm.executeQuery("select nextval('telefone_cdtelefone_seq')");

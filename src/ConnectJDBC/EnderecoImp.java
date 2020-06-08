@@ -9,6 +9,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+<<<<<<< HEAD:BoxControl/src/ConnectJDBC/EnderecoImp.java
+=======
+import GetConnection.GetConnection;
+>>>>>>> teste:src/ConnectJDBC/EnderecoImp.java
 import dao.EnderecoDAO;
 import entity.Endereco;
 
@@ -20,8 +24,8 @@ public class EnderecoImp implements EnderecoDAO{
 
 	@Override
 	public void create(Endereco endereco) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		sttm = conn.createStatement();
 
 		rs = sttm.executeQuery("select nextval('funcionario_cdfuncionario_seq')");

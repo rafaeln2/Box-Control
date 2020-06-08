@@ -11,8 +11,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+<<<<<<< HEAD:BoxControl/src/ConnectJDBC/VendaImp.java
 import dao.VendaDAO;
 import entity.Telefone;
+=======
+import GetConnection.GetConnection;
+import dao.VendaDAO;
+>>>>>>> teste:src/ConnectJDBC/VendaImp.java
 import entity.Venda;
 
 public class VendaImp implements VendaDAO {
@@ -23,8 +28,8 @@ public class VendaImp implements VendaDAO {
 
 	@Override
 	public void create(Venda venda) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 		String data = venda.getData(); 
 		Date dataAtt = formatter.parse(data);

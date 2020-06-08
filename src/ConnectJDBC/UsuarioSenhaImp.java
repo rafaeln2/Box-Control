@@ -9,8 +9,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+<<<<<<< HEAD:BoxControl/src/ConnectJDBC/UsuarioSenhaImp.java
 import dao.UsuarioSenhaDAO;
 import entity.Telefone;
+=======
+import GetConnection.GetConnection;
+import dao.UsuarioSenhaDAO;
+>>>>>>> teste:src/ConnectJDBC/UsuarioSenhaImp.java
 import entity.UsuarioSenha;
 
 public class UsuarioSenhaImp implements UsuarioSenhaDAO {
@@ -21,8 +26,8 @@ public class UsuarioSenhaImp implements UsuarioSenhaDAO {
 	
 	@Override
 	public void create(UsuarioSenha usuarioSenha) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		sttm = conn.createStatement();
 
 		rs = sttm.executeQuery("select nextval('usuario_senha_cdus_seq')");

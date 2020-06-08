@@ -9,8 +9,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+<<<<<<< HEAD:BoxControl/src/ConnectJDBC/CarrinhoImp.java
 import dao.CarrinhoDAO;
 import entity.Cargo;
+=======
+import GetConnection.GetConnection;
+import dao.CarrinhoDAO;
+>>>>>>> teste:src/ConnectJDBC/CarrinhoImp.java
 import entity.Carrinho;
 
 public class CarrinhoImp implements CarrinhoDAO {
@@ -21,8 +26,8 @@ public class CarrinhoImp implements CarrinhoDAO {
 
 	@Override
 	public void create(Carrinho carrinho) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		sttm = conn.createStatement();
 		rs = sttm.executeQuery("select nextval('carrinho_cdcarrinho_seq')");
 		rs.next();

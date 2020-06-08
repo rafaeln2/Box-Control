@@ -9,6 +9,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+<<<<<<< HEAD:BoxControl/src/ConnectJDBC/FuncionarioImp.java
+=======
+import GetConnection.GetConnection;
+>>>>>>> teste:src/ConnectJDBC/FuncionarioImp.java
 import dao.FuncionarioDAO;
 import entity.Funcionario;
 
@@ -20,8 +24,9 @@ public class FuncionarioImp implements FuncionarioDAO {
 
 	@Override
 	public void create(Funcionario funcionario) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
+		
 		sttm = conn.createStatement();
 
 		rs = sttm.executeQuery("select nextval('funcionario_cdfuncionario_seq')");

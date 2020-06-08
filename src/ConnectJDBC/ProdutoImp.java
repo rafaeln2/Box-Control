@@ -9,6 +9,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+<<<<<<< HEAD:BoxControl/src/ConnectJDBC/ProdutoImp.java
+=======
+import GetConnection.GetConnection;
+>>>>>>> teste:src/ConnectJDBC/ProdutoImp.java
 import dao.ProdutoDAO;
 import entity.Produto;
 
@@ -20,8 +24,8 @@ public class ProdutoImp implements ProdutoDAO {
 
 	@Override
 	public void create(Produto produto) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		sttm = conn.createStatement();
 
 		rs = sttm.executeQuery("select nextval('produto_cdproduto_seq')");

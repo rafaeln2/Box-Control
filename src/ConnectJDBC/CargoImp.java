@@ -9,6 +9,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+<<<<<<< HEAD:BoxControl/src/ConnectJDBC/CargoImp.java
+=======
+import GetConnection.GetConnection;
+>>>>>>> teste:src/ConnectJDBC/CargoImp.java
 import dao.CargoDAO;
 import entity.Cargo;
 
@@ -20,8 +24,8 @@ public class CargoImp implements CargoDAO {
 
 	@Override
 	public void create(Cargo cargo) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		sttm = conn.createStatement();
 		rs = sttm.executeQuery("select nextval('cargo_cdcargo_seq')");
 		rs.next();
