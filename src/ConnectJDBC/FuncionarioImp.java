@@ -1,50 +1,40 @@
 package ConnectJDBC;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.Statement;
+//import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-<<<<<<< HEAD:BoxControl/src/ConnectJDBC/FuncionarioImp.java
-=======
 import GetConnection.GetConnection;
->>>>>>> teste:src/ConnectJDBC/FuncionarioImp.java
 import dao.FuncionarioDAO;
 import entity.Funcionario;
 
 public class FuncionarioImp implements FuncionarioDAO {
-	private Connection conn = null; 
 	private PreparedStatement stm;
 	private ResultSet rs;
-	private Statement sttm;
+	//private Statement sttm;
 
 	@Override
 	public void create(Funcionario funcionario) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
-		
-		sttm = conn.createStatement();
 
-		rs = sttm.executeQuery("select nextval('funcionario_cdfuncionario_seq')");
-		rs.next();
-		Integer id = rs.getInt(1);
-
-		stm = conn.prepareStatement("insert into funcionario(CDFUNCIONARIO, SALARIO, CDPESSOA CDCARGO, CDUS) VALUES (?, ?, ?, ?, ?)");
-		stm.setInt(1, id);
-		stm.setFloat(2, funcionario.getSalario());
-		stm.setInt(3, funcionario.getCdPessoa());
+		stm = conn.prepareStatement("insert into funcionario(SALARIO, CDPESSOA, CDCARGO, CDUS) VALUES (?, ?, ?, ?)");
+		stm.setFloat(1, funcionario.getSalario());
+		stm.setInt(2, funcionario.getCdPessoa());
+		stm.setInt(3, 1);
 		stm.setInt(4, funcionario.getcdUs());
 		stm.executeUpdate();
+		System.out.println("Funcionario criado com sucesso !\n");
 	}
 
 	@Override
-	public void read(Integer cdFuncionario) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+	public void read(int cdFuncionario) throws Exception {
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from funcionario where CDFUNCIONARIO = (?) order by CDFUNCIONARIO");
 		stm.setInt(1, cdFuncionario);
 
@@ -62,9 +52,9 @@ public class FuncionarioImp implements FuncionarioDAO {
 	}
 
 	@Override
-	public void update(Integer cdFuncionario, String toUpdate) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+	public void update(int cdFuncionario, String toUpdate) throws Exception {
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE funcionario SET salario = (?) where CDFUNCIONARIO = (?)");
 		stm.setDouble(1, Double.parseDouble(toUpdate));
 		stm.setInt(2, cdFuncionario);
@@ -72,9 +62,9 @@ public class FuncionarioImp implements FuncionarioDAO {
 	}
 
 	@Override
-	public void delete(Integer cdFuncionario) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+	public void delete(int cdFuncionario) throws Exception {
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from funcionario where CDFUNCIONARIO = (?)");
 		stm.setInt(1, cdFuncionario);
 		stm.executeUpdate();
@@ -82,21 +72,34 @@ public class FuncionarioImp implements FuncionarioDAO {
 
 	@Override
 	public Collection<Funcionario> list() throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from funcionario order by CDFUNCIONARIO");
 		rs = stm.executeQuery();
-
+		PreparedStatement selectFuncionarioData;
+		ResultSet responseSelectFuncionarioData;
 		Collection<Funcionario> funcionarios = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdFuncionario = rs.getInt("CDFUNCIONARIO");
-			Float salario = rs.getFloat("SALARIO");
-			Integer cdPessoa = rs.getInt("CDPESSOA");
-			Integer cdCargo = rs.getInt("CDCARGO");
-			Integer cdUs = rs.getInt("CDUS");
+			int cdFuncionario = rs.getInt("CDFUNCIONARIO");
+			float salario = rs.getFloat("SALARIO");
+			int cdPessoa = rs.getInt("CDPESSOA");
+			int cdCargo = rs.getInt("CDCARGO");
+			int cdUs = rs.getInt("CDUS");
 			
-			funcionarios.add(new Funcionario(cdFuncionario, salario, cdPessoa, cdCargo, cdUs));
+			selectFuncionarioData = conn.prepareStatement("SELECT P.NOME,P.CPF,P.DATA_NASC FROM PESSOA P\r\n" + 
+					"INNER JOIN FUNCIONARIO F ON F.CDPESSOA = P.CDPESSOA\r\n" + 
+					"WHERE CDFUNCIONARIO = "+ cdFuncionario +";");
+			responseSelectFuncionarioData = selectFuncionarioData.executeQuery();
+			while(responseSelectFuncionarioData.next()) {
+				
+				String nomeFuncionario = responseSelectFuncionarioData.getString("NOME");
+				String cpfFuncionario = responseSelectFuncionarioData.getString("CPF");
+				String dataNascFuncionario = responseSelectFuncionarioData.getString("DATA_NASC");
+			
+				funcionarios.add(new Funcionario(salario, cdPessoa, cdCargo, cdUs, cpfFuncionario, nomeFuncionario, dataNascFuncionario));
+			}
+			System.out.println("Funcionarios no Banco: "+ funcionarios.toString());
 		}
 		return funcionarios;
 	}

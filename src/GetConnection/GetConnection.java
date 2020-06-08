@@ -12,12 +12,11 @@ public class GetConnection {
 		try {
 			String url = "jdbc:postgresql://localhost/banco_aps";
 			String username ="postgres";
-			String password = "12345";
+			String password = "1234";
 			
 			Class.forName("org.postgresql.Driver");
 
 			conn = DriverManager.getConnection(url, username, password); 
-			System.out.println("Connected to database !");
 			return conn;
 			
 		} catch (Exception e) {

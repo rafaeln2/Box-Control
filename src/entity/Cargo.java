@@ -2,38 +2,28 @@ package entity;
 
 public class Cargo {
 
-	private Integer cdCargo;
-	private Integer nivelAcesso;
+	private int cdCargo = 0;
+	private int nivelAcesso;
 	private String nmCargo;
 
-	public Cargo() {
-		
-	}
-
-	public Cargo(Integer nivelAcesso, String nmCargo) {
+	public Cargo(int nivelAcesso, String nmCargo) {
 		this.nivelAcesso = nivelAcesso;
 		this.nmCargo = nmCargo;
 	}
 
-	public Cargo(Integer cdCargo, Integer nivelAcesso, String nmCargo) {
-		this.cdCargo = cdCargo;
-		this.nivelAcesso = nivelAcesso;
-		this.nmCargo = nmCargo;
-	}
-
-	public Integer getCdCargo() {
+	public int getCdCargo() {
 		return cdCargo;
 	}
 
-	public void setCdCargo(Integer cdCargo) {
+	public void setCdCargo(int cdCargo) {
 		this.cdCargo = cdCargo;
 	}
 
-	public Integer getNivelAcesso() {
+	public int getNivelAcesso() {
 		return nivelAcesso;
 	}
 
-	public void setNivelAcesso(Integer nivelAcesso) {
+	public void setNivelAcesso(int nivelAcesso) {
 		this.nivelAcesso = nivelAcesso;
 	}
 

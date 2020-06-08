@@ -1,7 +1,6 @@
 package ConnectJDBC;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -9,15 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-<<<<<<< HEAD:BoxControl/src/ConnectJDBC/ProdutoImp.java
-=======
 import GetConnection.GetConnection;
->>>>>>> teste:src/ConnectJDBC/ProdutoImp.java
 import dao.ProdutoDAO;
 import entity.Produto;
 
 public class ProdutoImp implements ProdutoDAO {
-	private Connection conn = null; 
 	private PreparedStatement stm;
 	private ResultSet rs;
 	private Statement sttm;
@@ -43,8 +38,8 @@ public class ProdutoImp implements ProdutoDAO {
 
 	@Override
 	public void read(Integer cdProduto) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from produto where cdproduto = (?) order by cdproduto");
 		stm.setInt(1, cdProduto);
 
@@ -63,8 +58,8 @@ public class ProdutoImp implements ProdutoDAO {
 
 	@Override
 	public void update(Integer cdProduto, String toUpdate) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE produto SET descr = (?) where cdproduto = (?)");
 		stm.setString(1, toUpdate);
 		stm.setInt(2, cdProduto);
@@ -73,8 +68,8 @@ public class ProdutoImp implements ProdutoDAO {
 
 	@Override
 	public void delete(Integer cdProduto) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from produto where cdproduto = (?)");
 		stm.setInt(1, cdProduto);
 		stm.executeUpdate();
@@ -82,8 +77,8 @@ public class ProdutoImp implements ProdutoDAO {
 
 	@Override
 	public Collection<Produto> list() throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from produto order by cdproduto");
 		rs = stm.executeQuery();
 

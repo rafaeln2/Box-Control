@@ -1,7 +1,6 @@
 package ConnectJDBC;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -9,15 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-<<<<<<< HEAD:BoxControl/src/ConnectJDBC/TelefoneImp.java
-=======
 import GetConnection.GetConnection;
->>>>>>> teste:src/ConnectJDBC/TelefoneImp.java
 import dao.TelefoneDAO;
 import entity.Telefone;
 
 public class TelefoneImp implements TelefoneDAO {
-	private Connection conn = null; 
 	private PreparedStatement stm;
 	private ResultSet rs;
 	private Statement sttm;
@@ -43,8 +38,8 @@ public class TelefoneImp implements TelefoneDAO {
 
 	@Override
 	public void read(Integer cdTelefone) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from telefone where cdtelefone = (?) order by cdtelefone");
 		stm.setInt(1, cdTelefone);
 
@@ -63,8 +58,8 @@ public class TelefoneImp implements TelefoneDAO {
 
 	@Override
 	public void update(Integer cdTelefone, String toUpdate) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE telefone SET numero = (?) where cdtelefone = (?)");
 		stm.setString(1, toUpdate);
 		stm.setInt(2, cdTelefone);
@@ -73,8 +68,8 @@ public class TelefoneImp implements TelefoneDAO {
 
 	@Override
 	public void delete(Integer cdTelefone) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from telefone where cdtelefone = (?)");
 		stm.setInt(1, cdTelefone);
 		stm.executeUpdate();
@@ -82,8 +77,8 @@ public class TelefoneImp implements TelefoneDAO {
 
 	@Override
 	public Collection<Telefone> list() throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from telefone order by cdtelefone");
 		rs = stm.executeQuery();
 

@@ -1,7 +1,6 @@
 package ConnectJDBC;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -9,17 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-<<<<<<< HEAD:BoxControl/src/ConnectJDBC/CarrinhoImp.java
-import dao.CarrinhoDAO;
-import entity.Cargo;
-=======
 import GetConnection.GetConnection;
 import dao.CarrinhoDAO;
->>>>>>> teste:src/ConnectJDBC/CarrinhoImp.java
 import entity.Carrinho;
 
 public class CarrinhoImp implements CarrinhoDAO {
-	private Connection conn = null; 
 	private PreparedStatement stm;
 	private ResultSet rs;
 	private Statement sttm;
@@ -49,8 +42,8 @@ public class CarrinhoImp implements CarrinhoDAO {
 	
 	@Override
 	public void read(Integer idCarrinho) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from carrinho where cdcarrinho = (?)");
 		stm.setInt(1, idCarrinho);
 
@@ -69,8 +62,8 @@ public class CarrinhoImp implements CarrinhoDAO {
 
 	@Override
 	public void update(Integer cdCarrinho, String toUpdate) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE carrinho SET cdvenda = (?) where cdcarrinho = (?)");
 
 		stm.setInt(1, Integer.parseInt(toUpdate));
@@ -81,8 +74,8 @@ public class CarrinhoImp implements CarrinhoDAO {
 
 	@Override
 	public void delete(Integer cdCarrinho) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from carrinho where cdcarrinho = (?)");
 		stm.setInt(1, cdCarrinho);
 		stm.executeUpdate();
@@ -90,8 +83,8 @@ public class CarrinhoImp implements CarrinhoDAO {
 
 	@Override
 	public Collection<Carrinho> list() throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from cargo order by cdcargo");
 
 		rs = stm.executeQuery();

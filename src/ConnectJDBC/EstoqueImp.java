@@ -1,7 +1,6 @@
 package ConnectJDBC;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -9,15 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-<<<<<<< HEAD:BoxControl/src/ConnectJDBC/EstoqueImp.java
-=======
 import GetConnection.GetConnection;
->>>>>>> teste:src/ConnectJDBC/EstoqueImp.java
 import dao.EstoqueDAO;
 import entity.Estoque;
 
 public class EstoqueImp implements EstoqueDAO {
-	private Connection conn = null; 
 	private PreparedStatement stm;
 	private ResultSet rs;
 	private Statement sttm;
@@ -41,8 +36,8 @@ public class EstoqueImp implements EstoqueDAO {
 
 	@Override
 	public void read(Integer cdEstoque) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from estoque where cdestoque = (?) order by cdestoque");
 		stm.setInt(1, cdEstoque);
 
@@ -61,8 +56,8 @@ public class EstoqueImp implements EstoqueDAO {
 
 	@Override
 	public void update(Integer cdEstoque, String toUpdate) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE estoque SET cdproduto = (?) where cdestoque = (?)");
 		stm.setInt(1, Integer.parseInt(toUpdate));
 		stm.setInt(2, cdEstoque);
@@ -71,8 +66,8 @@ public class EstoqueImp implements EstoqueDAO {
 
 	@Override
 	public void delete(Integer cdEstoque) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from estoque where estoque = (?)");
 		stm.setInt(1, cdEstoque);
 		stm.executeUpdate();
@@ -81,8 +76,8 @@ public class EstoqueImp implements EstoqueDAO {
 
 	@Override
 	public Collection<Estoque> list() throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from estoque order by cdestoque");
 		rs = stm.executeQuery();
 
