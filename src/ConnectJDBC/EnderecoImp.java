@@ -97,7 +97,7 @@ public class EnderecoImp implements EnderecoDAO{
 			String cep = rs.getString("CEP");
 			Integer cdpessoa = rs.getInt("CDPESSOA");
 
-			enderecos.add(new Endereco(cdEndereco, rua, nuEndereco, bairro, cidade, estado, cep, cdpessoa));
+			enderecos.add(new Endereco(rua, nuEndereco, bairro, cidade, estado, cep, cdpessoa));
 		}
 		return enderecos;
 	}

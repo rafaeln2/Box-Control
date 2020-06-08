@@ -12,7 +12,7 @@ public class GetConnection {
 		try {
 			String url = "jdbc:postgresql://localhost/banco_aps";
 			String username ="postgres";
-			String password = "Bernardo@1";
+			String password = "1234";
 			
 			Class.forName("org.postgresql.Driver");
 
