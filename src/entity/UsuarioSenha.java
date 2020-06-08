@@ -2,7 +2,7 @@ package entity;
 
 public class UsuarioSenha {
 
-	private Integer cdUsuarioSenha;
+	private int cdUsuarioSenha = 0;
 	private String usuario;
 	private String senha;
 	
@@ -16,18 +16,11 @@ public class UsuarioSenha {
 		this.senha = senha;
 	}
 
-	public UsuarioSenha(Integer cdUsuarioSenha, String usuario, String senha) {
-		super();
-		this.cdUsuarioSenha = cdUsuarioSenha;
-		this.usuario = usuario;
-		this.senha = senha;
-	}
-
-	public Integer getcdUsuarioSenha() {
+	public int getcdUsuarioSenha() {
 		return cdUsuarioSenha;
 	}
 
-	public void setcdUsuarioSenha(Integer cdUsuarioSenha) {
+	public void setcdUsuarioSenha(int cdUsuarioSenha) {
 		this.cdUsuarioSenha = cdUsuarioSenha;
 	}
 

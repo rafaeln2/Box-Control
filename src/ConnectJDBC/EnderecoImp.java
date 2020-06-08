@@ -1,7 +1,6 @@
 package ConnectJDBC;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -9,15 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-<<<<<<< HEAD:BoxControl/src/ConnectJDBC/EnderecoImp.java
-=======
 import GetConnection.GetConnection;
->>>>>>> teste:src/ConnectJDBC/EnderecoImp.java
 import dao.EnderecoDAO;
 import entity.Endereco;
 
 public class EnderecoImp implements EnderecoDAO{
-	private Connection conn = null; 
 	private PreparedStatement stm;
 	private ResultSet rs;
 	private Statement sttm;
@@ -46,8 +41,8 @@ public class EnderecoImp implements EnderecoDAO{
 
 	@Override
 	public void read(Integer cdEndereco) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from endereco where cdendereco = (?) order by cdendereco");
 		stm.setInt(1, cdEndereco);
 
@@ -66,8 +61,8 @@ public class EnderecoImp implements EnderecoDAO{
 
 	@Override
 	public void update(Integer cdEndereco, String toUpdate) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE endereco SET rua = (?) where cdendereco = (?)");
 		stm.setString(1, toUpdate);
 		stm.setInt(2, cdEndereco);
@@ -76,8 +71,8 @@ public class EnderecoImp implements EnderecoDAO{
 
 	@Override
 	public void delete(Integer cdEndereco) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from endereco where cdendereco = (?)");
 		stm.setInt(1, cdEndereco);
 		stm.executeUpdate();
@@ -85,8 +80,8 @@ public class EnderecoImp implements EnderecoDAO{
 
 	@Override
 	public Collection<Endereco> list() throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from endereco order by cdendereco");
 		rs = stm.executeQuery();
 

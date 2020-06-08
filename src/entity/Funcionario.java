@@ -1,77 +1,130 @@
 package entity;
 
-public class Funcionario {
+public class Funcionario extends Pessoa{
 
-	private Integer cdfuncionario;
-	private Float salario;
-	private Integer cdPessoa;
-	private Integer cdCargo;
-	private Integer cdUs;
-
-	public Funcionario() {
-
-	}
+	private int cdfuncionario;
+	private float salario;
+	private int cdPessoa;
+	private int cdCargo;
+	private int cdUs;
 	
-	
-	public Funcionario(Float salario, Integer cdPessoa, Integer cdCargo, Integer cdUs) {
-		super();
+	public Funcionario(float salario, int cdPessoa, int cdCargo, int cdUs, String cpf, String nome, String dataNascimento) {
+		super(cpf, nome, dataNascimento);
 		this.salario = salario;
 		this.cdPessoa = cdPessoa;
 		this.cdCargo = cdCargo;
 		this.cdUs = cdUs;
 	}
 
-
-	public Funcionario(Integer cdfuncionario, Float salario, Integer cdPessoa, Integer cdCargo, Integer cdUs) {
-		super();
-		this.cdfuncionario = cdfuncionario;
-		this.salario = salario;
-		this.cdPessoa = cdPessoa;
-		this.cdCargo = cdCargo;
-		this.cdUs = cdUs;
-	}
-
-
-	public Integer getcdfuncionario() {
+	public int getcdfuncionario() {
 		return cdfuncionario;
 	}
 
-	public void setcdfuncionario(Integer cdfuncionario) {
+	public void setcdfuncionario(int cdfuncionario) {
 		this.cdfuncionario = cdfuncionario;
 	}
 
-	public Float getSalario() {
+	public float getSalario() {
 		return salario;
 	}
-	
 
-	public Integer getCdPessoa() {
+	public int getCdPessoa() {
 		return cdPessoa;
 	}
 
-	public void setCdPessoa(Integer cdPessoa) {
+	public void setCdPessoa(int cdPessoa) {
 		this.cdPessoa = cdPessoa;
 	}
 
-	public void setSalario(Float salario) {
+	public void setSalario(float salario) {
 		this.salario = salario;
 	}
 
-	public Integer getCdCargo() {
+	public int getCdCargo() {
 		return cdCargo;
 	}
 
-	public void setCdCargo(Integer cdCargo) {
+	public void setCdCargo(int cdCargo) {
 		this.cdCargo = cdCargo;
 	}
 
-	public Integer getcdUs() {
+	public int getcdUs() {
 		return cdUs;
 	}
 
-	public void setcdUs(Integer cdUs) {
+	public void setcdUs(int cdUs) {
 		this.cdUs = cdUs;
 	}
+
+	@Override
+	public String getCpf() {
+		// TODO Auto-generated method stub
+		return super.getCpf();
+	}
+
+
+	@Override
+	public void setCpf(String cpf) {
+		// TODO Auto-generated method stub
+		super.setCpf(cpf);
+	}
+
+
+	@Override
+	public String getNome() {
+		// TODO Auto-generated method stub
+		return super.getNome();
+	}
+
+
+	@Override
+	public void setNome(String nome) {
+		// TODO Auto-generated method stub
+		super.setNome(nome);
+	}
+
+
+	@Override
+	public String getDataNascimento() {
+		// TODO Auto-generated method stub
+		return super.getDataNascimento();
+	}
+
+
+	@Override
+	public void setDataNascimento(String dataNascimento) {
+		// TODO Auto-generated method stub
+		super.setDataNascimento(dataNascimento);
+	}
+
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+
+
+	@Override
+	public boolean equals(Object arg0) {
+		// TODO Auto-generated method stub
+		return super.equals(arg0);
+	}
+
+
+	@Override
+	protected void finalize() throws Throwable {
+		// TODO Auto-generated method stub
+		super.finalize();
+	}
+
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
 
 	@Override
 	public String toString() {

@@ -1,7 +1,6 @@
 package ConnectJDBC;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -11,17 +10,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-<<<<<<< HEAD:BoxControl/src/ConnectJDBC/VendaImp.java
-import dao.VendaDAO;
-import entity.Telefone;
-=======
 import GetConnection.GetConnection;
 import dao.VendaDAO;
->>>>>>> teste:src/ConnectJDBC/VendaImp.java
 import entity.Venda;
 
 public class VendaImp implements VendaDAO {
-	private Connection conn = null; 
 	private PreparedStatement stm;
 	private ResultSet rs;
 	private Statement sttm;
@@ -48,8 +41,8 @@ public class VendaImp implements VendaDAO {
 
 	@Override
 	public void read(Integer cdVenda) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from venda where cdvenda = (?) order by cdvenda");
 		stm.setInt(1, cdVenda);
 
@@ -68,8 +61,8 @@ public class VendaImp implements VendaDAO {
 
 	@Override
 	public void update(Integer cdVenda, String toUpdate) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 		String data = toUpdate; 
 		Date dataAtt = formatter.parse(data);
@@ -82,8 +75,8 @@ public class VendaImp implements VendaDAO {
 
 	@Override
 	public void delete(Integer cdVenda) throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from venda where cdvenda = (?)");
 		stm.setInt(1, cdVenda);
 		stm.executeUpdate();
@@ -91,8 +84,8 @@ public class VendaImp implements VendaDAO {
 
 	@Override
 	public Collection<Venda> list() throws Exception {
-		conn = DriverManager.getConnection("jdbc:postgresql://localhost/aulapostgres", "admin", "admin");
-
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from venda order by cdvenda");
 		rs = stm.executeQuery();
 
