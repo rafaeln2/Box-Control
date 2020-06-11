@@ -29,6 +29,7 @@ public class CartView extends JPanel {
 	
 	private double totalValue = 0.00;
 	private int totalItems = 0;
+	private JTextField cdFuncField;
 	
 	public CartView() {
 		this.setBackground(Color.WHITE);
@@ -176,10 +177,18 @@ public class CartView extends JPanel {
 		table.getColumnModel().getColumn(2).setMaxWidth(100);
 		scrollPane.setViewportView(table);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/media/guilherme/HD-EG5/HD Guilherme/_FACUL C-COMPUTACAO/3SEM_APS/APS/bin/download.png"));
-		label.setBounds(93, -16, 272, 185);
-		this.add(label);
+		JLabel lblCodFuncionario = new JLabel("Cod. Funcionário:");
+		lblCodFuncionario.setFont(new Font("Roboto", Font.BOLD, 32));
+		lblCodFuncionario.setBounds(30, 40, 400, 43);
+		add(lblCodFuncionario);
+		
+		cdFuncField = new JTextField();
+		cdFuncField.setToolTipText("Digite o nome do produto...");
+		cdFuncField.setHorizontalAlignment(SwingConstants.LEFT);
+		cdFuncField.setFont(new Font("Roboto", Font.PLAIN, 14));
+		cdFuncField.setColumns(10);
+		cdFuncField.setBounds(30, 95, 400, 30);
+		add(cdFuncField);
 	}
 	
 	/*
@@ -217,5 +226,4 @@ public class CartView extends JPanel {
 	public void errorMessage(String message) {
 		JOptionPane.showMessageDialog(this, message);
 	}
-
 }

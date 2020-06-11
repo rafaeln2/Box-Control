@@ -1,0 +1,92 @@
+package views;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+public class RegisterFuncView extends JPanel {
+	
+private JTextField cargoField;
+	
+	JButton btnRegister = new JButton("Cadastrar");
+	private JTextField birthField;
+	private JTextField cpfField;
+	
+	public RegisterFuncView() {
+		setBackground(Color.WHITE);
+		setLayout(null);
+		
+		cargoField = new JTextField();
+		cargoField.setToolTipText("Digite nome...");
+		cargoField.setHorizontalAlignment(SwingConstants.LEFT);
+		cargoField.setFont(new Font("Roboto", Font.PLAIN, 14));
+		cargoField.setColumns(10);
+		cargoField.setBounds(159, 90, 702, 30);
+		add(cargoField);
+		
+		JLabel lblProduto = new JLabel("Cargo");
+		lblProduto.setFont(new Font("Roboto", Font.BOLD, 18));
+		lblProduto.setBounds(47, 95, 127, 20);
+		add(lblProduto);
+		
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(cpfField.getText().trim().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Há campos em branco, complete todos campos.");
+				} else {
+					
+					//aqui entra a logica para gravar no banco
+					
+					System.out.println("CPF: "+cpfField.getText());
+					System.out.println("Nome: "+cargoField.getText());
+					System.out.println("Nascimento: "+birthField.getText());
+					System.out.println("Rua: "+streetField.getText());
+					System.out.println("Numero: "+numField.getText());
+					System.out.println("Bairo: "+neighborhoodField.getText());
+					System.out.println("Cidade: "+cityField.getText());
+					System.out.println("Estado: "+countryField.getText());
+					System.out.println("CEP: "+cepField.getText());
+				}
+			}
+		});
+		btnRegister.setBounds(745, 490, 117, 25);
+		add(btnRegister);
+		
+		JLabel lblCadastroDeProdutos_1 = new JLabel("Cadastro de Funcionário");
+		lblCadastroDeProdutos_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCadastroDeProdutos_1.setFont(new Font("Roboto", Font.BOLD, 24));
+		lblCadastroDeProdutos_1.setBounds(272, 13, 379, 52);
+		add(lblCadastroDeProdutos_1);
+		
+		birthField = new JTextField();
+		birthField.setToolTipText("Digite sua data de nascimento...");
+		birthField.setColumns(10);
+		birthField.setBounds(159, 144, 249, 30);
+		add(birthField);
+		
+		JLabel lblMarca = new JLabel("Salário");
+		lblMarca.setFont(new Font("Roboto", Font.BOLD, 18));
+		lblMarca.setBounds(48, 149, 127, 20);
+		add(lblMarca);
+		
+		JLabel lblUnidade = new JLabel("Nivel de acesso");
+		lblUnidade.setFont(new Font("Roboto", Font.BOLD, 18));
+		lblUnidade.setBounds(426, 149, 165, 20);
+		add(lblUnidade);
+		
+		cpfField = new JTextField();
+		cpfField.setToolTipText("Digite CPF...");
+		cpfField.setColumns(10);
+		cpfField.setBounds(590, 144, 271, 30);
+		add(cpfField);
+	}
+
+}

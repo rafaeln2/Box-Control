@@ -15,6 +15,7 @@ public class SystemView extends JFrame {
 	private CartView cartView = new CartView();
 	private StockView stockView = new StockView();
 	private RegisterPersonView personView = new RegisterPersonView();
+	private RegisterFuncView funcView = new RegisterFuncView();
 	
 	
 	public SystemView() {
@@ -55,10 +56,11 @@ public class SystemView extends JFrame {
 		contentPane.add(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 				
+		layeredPane.add(cartView, "cartView");
 		layeredPane.add(personView, "personView");
 		layeredPane.add(registerProductView, "registerView");
-		layeredPane.add(cartView, "cartView");
 		layeredPane.add(stockView, "stockView");	
+		layeredPane.add(funcView, "funcView");
 		
 		mntmProduto.addActionListener(new ActionListener() {
 			@Override
@@ -86,6 +88,13 @@ public class SystemView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				switchPanels(personView);				
+			}
+		});
+		
+		mntmFuncionrio.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				switchPanels(funcView);				
 			}
 		});
 		

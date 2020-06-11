@@ -25,6 +25,9 @@ public class RegisterPersonView extends JPanel {
 	private JTextField cityField;
 	private JTextField countryField;
 	private JTextField cepField;
+	private JTextField phoneField;
+	private JTextField dddField;
+	private JTextField phoneTypeField;
 	public RegisterPersonView() {
 		setBackground(Color.WHITE);
 		setLayout(null);
@@ -62,19 +65,19 @@ public class RegisterPersonView extends JPanel {
 				}
 			}
 		});
-		btnRegister.setBounds(410, 438, 117, 25);
+		btnRegister.setBounds(745, 490, 117, 25);
 		add(btnRegister);
 		
 		JLabel lblCadastroDeProdutos_1 = new JLabel("Cadastro de Pessoa");
 		lblCadastroDeProdutos_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCadastroDeProdutos_1.setFont(new Font("Roboto", Font.BOLD, 24));
-		lblCadastroDeProdutos_1.setBounds(339, 12, 259, 52);
+		lblCadastroDeProdutos_1.setBounds(332, 12, 259, 52);
 		add(lblCadastroDeProdutos_1);
 		
 		birthField = new JTextField();
 		birthField.setToolTipText("Digite sua data de nascimento...");
 		birthField.setColumns(10);
-		birthField.setBounds(159, 144, 219, 30);
+		birthField.setBounds(159, 144, 249, 30);
 		add(birthField);
 		
 		JLabel lblMarca = new JLabel("Nascimento");
@@ -114,7 +117,7 @@ public class RegisterPersonView extends JPanel {
 		numField = new JTextField();
 		numField.setToolTipText("Digite sua data de nascimento...");
 		numField.setColumns(10);
-		numField.setBounds(159, 259, 219, 30);
+		numField.setBounds(159, 259, 249, 30);
 		add(numField);
 		
 		JLabel lblBairro = new JLabel("Bairro");
@@ -136,7 +139,7 @@ public class RegisterPersonView extends JPanel {
 		cityField = new JTextField();
 		cityField.setToolTipText("Digite sua data de nascimento...");
 		cityField.setColumns(10);
-		cityField.setBounds(159, 315, 219, 30);
+		cityField.setBounds(159, 315, 249, 30);
 		add(cityField);
 		
 		JLabel lblEstado = new JLabel("Estado");
@@ -158,8 +161,41 @@ public class RegisterPersonView extends JPanel {
 		cepField = new JTextField();
 		cepField.setToolTipText("Digite sua data de nascimento...");
 		cepField.setColumns(10);
-		cepField.setBounds(159, 371, 219, 30);
+		cepField.setBounds(159, 371, 249, 30);
 		add(cepField);
+		
+		JLabel lblTelefone = new JLabel("Telefone");
+		lblTelefone.setFont(new Font("Roboto", Font.BOLD, 18));
+		lblTelefone.setBounds(426, 433, 90, 20);
+		add(lblTelefone);
+		
+		phoneField = new JTextField();
+		phoneField.setToolTipText("Digite CPF...");
+		phoneField.setColumns(10);
+		phoneField.setBounds(509, 428, 351, 30);
+		add(phoneField);
+		
+		JLabel lblDdd = new JLabel("DDD");
+		lblDdd.setFont(new Font("Roboto", Font.BOLD, 18));
+		lblDdd.setBounds(47, 433, 60, 20);
+		add(lblDdd);
+		
+		dddField = new JTextField();
+		dddField.setToolTipText("Digite sua data de nascimento...");
+		dddField.setColumns(10);
+		dddField.setBounds(159, 428, 60, 30);
+		add(dddField);
+		
+		JLabel lblTipo = new JLabel("Tipo");
+		lblTipo.setFont(new Font("Roboto", Font.BOLD, 18));
+		lblTipo.setBounds(237, 433, 90, 20);
+		add(lblTipo);
+		
+		phoneTypeField = new JTextField();
+		phoneTypeField.setToolTipText("Digite sua data de nascimento...");
+		phoneTypeField.setColumns(10);
+		phoneTypeField.setBounds(292, 428, 116, 30);
+		add(phoneTypeField);
 	}
 
 }
