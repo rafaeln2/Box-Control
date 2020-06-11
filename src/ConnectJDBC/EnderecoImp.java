@@ -21,26 +21,26 @@ public class EnderecoImp implements EnderecoDAO{
 	public void create(Endereco endereco) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
-		sttm = conn.createStatement();
 
-		rs = sttm.executeQuery("select nextval('funcionario_cdfuncionario_seq')");
-		rs.next();
-		Integer id = rs.getInt(1);
-
-		stm = conn.prepareStatement("insert into endereco(cdendereco, rua, num_endereco, bairro, cidade, estado, cep, cdpessoa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-		stm.setInt(1, id);
-		stm.setString(2, endereco.getRua());
-		stm.setString(3, endereco.getNuEndereco());
-		stm.setString(4, endereco.getBairro());
-		stm.setString(5, endereco.getCidade());
-		stm.setString(6, endereco.getEstado());
-		stm.setString(7, endereco.getCep());
-		stm.setInt(8, endereco.getCdPessoa());
+		stm = conn.prepareStatement("insert into endereco(rua, num_endereco, bairro, cidade, estado, cep, cdpessoa) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		stm.setString(1, endereco.getRua());
+		stm.setString(2, endereco.getNuEndereco());
+		stm.setString(3, endereco.getBairro());
+		stm.setString(4, endereco.getCidade());
+		stm.setString(5, endereco.getEstado());
+		stm.setString(6, endereco.getCep());
+		stm.setInt(7, endereco.getCdPessoa());
 		stm.executeUpdate();
+		
+		sttm = conn.createStatement();
+		rs = sttm.executeQuery("select max(cdendereco) from endereco;");
+		rs.next();
+		int cdEndereco = rs.getInt(1);
+		endereco.setCdEndereco(cdEndereco);
 	}
 
 	@Override
-	public void read(Integer cdEndereco) throws Exception {
+	public void read(int cdEndereco) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from endereco where cdendereco = (?) order by cdendereco");
@@ -60,7 +60,7 @@ public class EnderecoImp implements EnderecoDAO{
 	}
 
 	@Override
-	public void update(Integer cdEndereco, String toUpdate) throws Exception {
+	public void update(int cdEndereco, String toUpdate) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE endereco SET rua = (?) where cdendereco = (?)");
@@ -70,7 +70,7 @@ public class EnderecoImp implements EnderecoDAO{
 	}
 
 	@Override
-	public void delete(Integer cdEndereco) throws Exception {
+	public void delete(int cdEndereco) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from endereco where cdendereco = (?)");
@@ -88,14 +88,14 @@ public class EnderecoImp implements EnderecoDAO{
 		Collection<Endereco> enderecos = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdEndereco = rs.getInt("CDENDERECO");
+			int cdEndereco = rs.getInt("CDENDERECO");
 			String rua = rs.getString("RUA");
 			String nuEndereco = rs.getString("NUM_ENDERECO");
 			String bairro = rs.getString("BAIRRO");
 			String cidade = rs.getString("CIDADE");
 			String estado = rs.getString("ESTADO");
 			String cep = rs.getString("CEP");
-			Integer cdpessoa = rs.getInt("CDPESSOA");
+			int cdpessoa = rs.getInt("CDPESSOA");
 
 			enderecos.add(new Endereco(rua, nuEndereco, bairro, cidade, estado, cep, cdpessoa));
 		}

@@ -21,23 +21,23 @@ public class TelefoneImp implements TelefoneDAO {
 	public void create(Telefone telefone) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
-		sttm = conn.createStatement();
-
-		rs = sttm.executeQuery("select nextval('telefone_cdtelefone_seq')");
-		rs.next();
-		Integer id = rs.getInt(1);
-
-		stm = conn.prepareStatement("insert into telefone(cdtelefone, tipo_telefone, ddd, numero, cdpessoa) VALUES (?, ?, ?, ?, ?)");
-		stm.setInt(1, id);
-		stm.setString(2, telefone.getTipoTelefone());
-		stm.setString(3, telefone.getDdd());
-		stm.setString(4, telefone.getNumero());
-		stm.setInt(5, telefone.getCdPessoa());
+		
+		stm = conn.prepareStatement("insert into telefone(tipo_telefone, ddd, numero, cdpessoa) VALUES (?, ?, ?, ?)");
+		stm.setString(1, telefone.getTipoTelefone());
+		stm.setString(2, telefone.getDdd());
+		stm.setString(3, telefone.getNumero());
+		stm.setInt(4, telefone.getCdPessoa());
 		stm.executeUpdate();
+		
+		sttm = conn.createStatement();
+		rs = sttm.executeQuery("select max(cdtelefone) from telefone;");
+		rs.next();
+		int cdTelefone = rs.getInt(1);
+		telefone.setCdTelefone(cdTelefone);	
 	}
 
 	@Override
-	public void read(Integer cdTelefone) throws Exception {
+	public void read(int cdTelefone) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from telefone where cdtelefone = (?) order by cdtelefone");
@@ -57,7 +57,7 @@ public class TelefoneImp implements TelefoneDAO {
 	}
 
 	@Override
-	public void update(Integer cdTelefone, String toUpdate) throws Exception {
+	public void update(int cdTelefone, String toUpdate) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE telefone SET numero = (?) where cdtelefone = (?)");
@@ -67,7 +67,7 @@ public class TelefoneImp implements TelefoneDAO {
 	}
 
 	@Override
-	public void delete(Integer cdTelefone) throws Exception {
+	public void delete(int cdTelefone) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from telefone where cdtelefone = (?)");
@@ -85,13 +85,13 @@ public class TelefoneImp implements TelefoneDAO {
 		Collection<Telefone> telefones = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdtelefone = rs.getInt("CDTELEFONE");
+			int cdtelefone = rs.getInt("CDTELEFONE");
 			String tipoTelefone = rs.getString("TIPO_TELEFONE");
 			String ddd = rs.getString("DDD");
 			String numero = rs.getString("NUMERO");
-			Integer cdPessoa = rs.getInt("CDPESSOA");
+			int cdPessoa = rs.getInt("CDPESSOA");
 
-			telefones.add(new Telefone(cdtelefone, tipoTelefone, ddd, numero, cdPessoa));
+			telefones.add(new Telefone(tipoTelefone, ddd, numero, cdPessoa));
 		}
 		return telefones;
 	}

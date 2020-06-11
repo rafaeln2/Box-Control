@@ -38,7 +38,7 @@ public class CargoImp implements CargoDAO {
 	}
 
 	@Override
-	public void read(Integer cdCargo) throws Exception {
+	public void read(int cdCargo) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();		stm = conn.prepareStatement("select * from cargo c JOIN funcionario f ON c.cdcargo = f.cdcargo where f.cdcargo = (?)");
 		stm.setInt(1, cdCargo);
@@ -56,7 +56,7 @@ public class CargoImp implements CargoDAO {
 		}
 	}
 			@Override
-			public void update(Integer cdCargo, String toUpdate) throws Exception {
+			public void update(int cdCargo, String toUpdate) throws Exception {
 				GetConnection conexao = new GetConnection ();
 				Connection conn = conexao.getConnection();
 				stm = conn.prepareStatement("UPDATE cargo SET nm_cargo = (?) where cdcargo = (?)");
@@ -68,7 +68,7 @@ public class CargoImp implements CargoDAO {
 			}
 
 			@Override
-			public void delete(Integer cdCargo) throws Exception {
+			public void delete(int cdCargo) throws Exception {
 				GetConnection conexao = new GetConnection ();
 				Connection conn = conexao.getConnection();
 				stm = conn.prepareStatement("delete from cargo where cdcargo = (?)");

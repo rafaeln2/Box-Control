@@ -3,18 +3,11 @@ package entity;
 public class Telefone {
 
 	private Integer cdTelefone;
-	private String tipoTelefone; //enum
+	private String tipoTelefone; 
 	private String ddd;
 	private String numero;
 	private Integer cdPessoa;
-	public Telefone(Integer cdTelefone, String tipoTelefone, String ddd, String numero, Integer cdPessoa) {
-		super();
-		this.cdTelefone = cdTelefone;
-		this.tipoTelefone = tipoTelefone;
-		this.ddd = ddd;
-		this.numero = numero;
-		this.cdPessoa = cdPessoa;
-	}
+
 	public Telefone(String tipoTelefone, String ddd, String numero, Integer cdPessoa) {
 		super();
 		this.tipoTelefone = tipoTelefone;
@@ -22,6 +15,7 @@ public class Telefone {
 		this.numero = numero;
 		this.cdPessoa = cdPessoa;
 	}
+	
 	public Integer getCdTelefone() {
 		return cdTelefone;
 	}

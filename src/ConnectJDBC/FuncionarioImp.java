@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 //import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,7 +16,7 @@ import entity.Funcionario;
 public class FuncionarioImp implements FuncionarioDAO {
 	private PreparedStatement stm;
 	private ResultSet rs;
-	//private Statement sttm;
+	private Statement sttm;
 
 	@Override
 	public void create(Funcionario funcionario) throws Exception {
@@ -28,7 +29,13 @@ public class FuncionarioImp implements FuncionarioDAO {
 		stm.setInt(3, 1);
 		stm.setInt(4, funcionario.getcdUs());
 		stm.executeUpdate();
-		System.out.println("Funcionario criado com sucesso !\n");
+		
+		sttm = conn.createStatement();
+		rs = sttm.executeQuery("select max(cdfuncionario) from funcionario;");
+		rs.next();
+		int cdFuncionario = rs.getInt(1);
+		funcionario.setCdFuncionario(cdFuncionario);
+		
 	}
 
 	@Override

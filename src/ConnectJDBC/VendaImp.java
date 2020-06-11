@@ -27,20 +27,19 @@ public class VendaImp implements VendaDAO {
 		String data = venda.getData(); 
 		Date dataAtt = formatter.parse(data);
 
+		stm = conn.prepareStatement("insert into pessoa(data) VALUES (?)");
+		stm.setDate(1, new java.sql.Date(dataAtt.getTime()));
+		stm.executeUpdate();	
+		
 		sttm = conn.createStatement();
-
-		rs = sttm.executeQuery("select nextval('pessoa_cdpessoa_seq')");
+		rs = sttm.executeQuery("select max(cdvenda) from venda;");
 		rs.next();
-		Integer id = rs.getInt(1);
-
-		stm = conn.prepareStatement("insert into pessoa(cdvenda, data) VALUES (?, ?)");
-		stm.setInt(1, id);
-		stm.setDate(2, new java.sql.Date(dataAtt.getTime()));
-		stm.executeUpdate();		
+		int cdVenda = rs.getInt(1);
+		venda.setcdVenda(cdVenda);
 	}
 
 	@Override
-	public void read(Integer cdVenda) throws Exception {
+	public void read(int cdVenda) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from venda where cdvenda = (?) order by cdvenda");
@@ -60,7 +59,7 @@ public class VendaImp implements VendaDAO {
 	}
 
 	@Override
-	public void update(Integer cdVenda, String toUpdate) throws Exception {
+	public void update(int cdVenda, String toUpdate) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
@@ -74,7 +73,7 @@ public class VendaImp implements VendaDAO {
 	}
 
 	@Override
-	public void delete(Integer cdVenda) throws Exception {
+	public void delete(int cdVenda) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from venda where cdvenda = (?)");
@@ -92,7 +91,7 @@ public class VendaImp implements VendaDAO {
 		Collection<Venda> vendas = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdVenda = rs.getInt("CDVENDA");
+			int cdVenda = rs.getInt("CDVENDA");
 			String data = rs.getString("DATA");
 			
 			vendas.add(new Venda(cdVenda, data));

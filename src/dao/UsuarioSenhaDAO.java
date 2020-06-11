@@ -9,11 +9,11 @@ public interface UsuarioSenhaDAO {
 
 	public void create(UsuarioSenha usuarioSenha) throws Exception;
 
-	public void read(Integer cdUsuarioSenha)throws Exception;
+	public void read(int cdUsuarioSenha)throws Exception;
 
-	public void update(Integer cdUsuarioSenha, String toUpdate)throws Exception;
+	public void update(int cdUsuarioSenha, String toUpdate)throws Exception;
 
-	public void delete(Integer cdUsuarioSenha)throws Exception;
+	public void delete(int cdUsuarioSenha)throws Exception;
 
 	Collection<UsuarioSenha> list()throws Exception;
 }

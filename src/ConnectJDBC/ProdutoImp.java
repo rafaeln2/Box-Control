@@ -21,23 +21,22 @@ public class ProdutoImp implements ProdutoDAO {
 	public void create(Produto produto) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
-		sttm = conn.createStatement();
 
-		rs = sttm.executeQuery("select nextval('produto_cdproduto_seq')");
-		rs.next();
-		Integer id = rs.getInt(1);
-
-		stm = conn.prepareStatement("insert into produto(cdproduto, descr, valor, marca, um) VALUES (?, ?, ?, ?, ?)");
-		stm.setInt(1, id);
-		stm.setString(2, produto.getDesc());
-		stm.setFloat(3, produto.getValor());
-		stm.setString(4, produto.getMarca());
-		stm.setString(5, produto.getUm());
+		stm = conn.prepareStatement("insert into produto(descr, valor, marca) VALUES (?, ?, ?)");
+		stm.setString(1, produto.getDesc());
+		stm.setFloat(2, produto.getValor());
+		stm.setString(3, produto.getMarca());
 		stm.executeUpdate();
-	}
+		
+		sttm = conn.createStatement();
+		rs = sttm.executeQuery("select max(cdproduto) from produto;");
+		rs.next();
+		int cdProduto = rs.getInt(1);
+		produto.setCdProduto(cdProduto);	
+		}
 
 	@Override
-	public void read(Integer cdProduto) throws Exception {
+	public void read(int cdProduto) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from produto where cdproduto = (?) order by cdproduto");
@@ -57,7 +56,7 @@ public class ProdutoImp implements ProdutoDAO {
 	}
 
 	@Override
-	public void update(Integer cdProduto, String toUpdate) throws Exception {
+	public void update(int cdProduto, String toUpdate) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE produto SET descr = (?) where cdproduto = (?)");
@@ -67,7 +66,7 @@ public class ProdutoImp implements ProdutoDAO {
 	}
 
 	@Override
-	public void delete(Integer cdProduto) throws Exception {
+	public void delete(int cdProduto) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from produto where cdproduto = (?)");
@@ -85,13 +84,13 @@ public class ProdutoImp implements ProdutoDAO {
 		Collection<Produto> produtos = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdproduto = rs.getInt("CDPRODUTO");
+			int cdproduto = rs.getInt("CDPRODUTO");
 			String descr = rs.getString("DESCR");
 			Float valor = rs.getFloat("VALOR");
 			String marca = rs.getString("MARCA");
 			String um = rs.getString("UM");
 
-			produtos.add(new Produto(cdproduto, descr, valor, marca, um));
+			produtos.add(new Produto(descr, valor, marca));
 		}
 		return produtos;
 	}

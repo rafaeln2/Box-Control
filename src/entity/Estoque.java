@@ -2,51 +2,38 @@ package entity;
 
 public class Estoque {
 
-	private Integer cdEstoque;
-	private Integer cdProduto;
-	private Integer quantidade;
+	private int cdEstoque;
+	private int cdProduto;
+	private int quantidade;
 
-	public Estoque() {
-
-	}
-	
-
-	public Estoque(Integer cdProduto, Integer quantidade) {
+	public Estoque(int cdProduto, int quantidade) {
+		
 		super();
 		this.cdProduto = cdProduto;
 		this.quantidade = quantidade;
 	}
 
-
-	public Estoque(Integer cdEstoque, Integer cdProduto, Integer quantidade) {
-		super();
-		this.cdEstoque = cdEstoque;
-		this.cdProduto = cdProduto;
-		this.quantidade = quantidade;
-	}
-
-
-	public Integer getCdEstoque() {
+	public int getCdEstoque() {
 		return cdEstoque;
 	}
 
-	public void setCdEstoque(Integer cdEstoque) {
+	public void setCdEstoque(int cdEstoque) {
 		this.cdEstoque = cdEstoque;
 	}
 
-	public Integer getcdProduto() {
+	public int getcdProduto() {
 		return cdProduto;
 	}
 
-	public void setCdProduto(Integer idProduto) {
+	public void setCdProduto(int idProduto) {
 		this.cdProduto = idProduto;
 	}
 
-	public Integer getQuantidade() {
+	public int getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Integer quantidade) {
+	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 

@@ -20,7 +20,7 @@ public class Funcionario extends Pessoa{
 		return cdfuncionario;
 	}
 
-	public void setcdfuncionario(int cdfuncionario) {
+	public void setCdFuncionario(int cdfuncionario) {
 		this.cdfuncionario = cdfuncionario;
 	}
 

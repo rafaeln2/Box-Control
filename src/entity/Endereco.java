@@ -24,12 +24,12 @@ public class Endereco {
 		this.cdPessoa = cdPessoa;
 	}
 
-	public int getIdEndereco() {
+	public int getCdEndereco() {
 		return cdEndereco;
 	}
 
-	public void setIdEndereco(int idEndereco) {
-		this.cdEndereco = idEndereco;
+	public void setCdEndereco(int cdEndereco) {
+		this.cdEndereco = cdEndereco;
 	}
 
 	public String getRua() {

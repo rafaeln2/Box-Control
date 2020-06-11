@@ -11,31 +11,33 @@ import java.util.Collection;
 import GetConnection.GetConnection;
 import dao.EstoqueDAO;
 import entity.Estoque;
+import entity.EstoqueEntityView;
 
 public class EstoqueImp implements EstoqueDAO {
 	private PreparedStatement stm;
 	private ResultSet rs;
 	private Statement sttm;
-
+	
 	@Override
 	public void create(Estoque estoque) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
-		sttm = conn.createStatement();
 
-		rs = sttm.executeQuery("select nextval('estoque_cdestoque_seq')");
-		rs.next();
-		Integer id = rs.getInt(1);
-
-		stm = conn.prepareStatement("insert into estoque(cdestoque, cdproduto, quantidade) VALUES (?, ?, ?)");
-		stm.setInt(1, id);
-		stm.setInt(2, estoque.getCdEstoque());
-		stm.setInt(3, estoque.getcdProduto());
+		stm = conn.prepareStatement("insert into estoque(cdproduto, quantidade) VALUES (?, ?)");
+		stm.setInt(1, estoque.getcdProduto());
+		stm.setInt(2, estoque.getQuantidade());
 		stm.executeUpdate();
+		
+		sttm = conn.createStatement();
+		rs = sttm.executeQuery("select max(cdestoque) from estoque;");
+		rs.next();
+		int cdEstoque = rs.getInt(1);
+		estoque.setCdEstoque(cdEstoque);
+		
 	}
 
 	@Override
-	public void read(Integer cdEstoque) throws Exception {
+	public void read(int cdEstoque) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from estoque where cdestoque = (?) order by cdestoque");
@@ -55,7 +57,7 @@ public class EstoqueImp implements EstoqueDAO {
 	}
 
 	@Override
-	public void update(Integer cdEstoque, String toUpdate) throws Exception {
+	public void update(int cdEstoque, String toUpdate) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE estoque SET cdproduto = (?) where cdestoque = (?)");
@@ -65,7 +67,7 @@ public class EstoqueImp implements EstoqueDAO {
 	}
 
 	@Override
-	public void delete(Integer cdEstoque) throws Exception {
+	public void delete(int cdEstoque) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from estoque where estoque = (?)");
@@ -84,12 +86,13 @@ public class EstoqueImp implements EstoqueDAO {
 		Collection<Estoque> estoques = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdEstoque = rs.getInt("CDESTOQUE");
-			Integer cdProduto = rs.getInt("CDPRODUTO");
-			Integer quantidade = rs.getInt("QUANTIDADE");
-		
-
-			estoques.add(new Estoque(cdEstoque, cdProduto, quantidade));
+			int cdEstoque = rs.getInt("CDESTOQUE");
+			int cdProduto = rs.getInt("CDPRODUTO");
+			int quantidade = rs.getInt("QUANTIDADE");
+			
+			Estoque estoque = new Estoque(cdProduto, quantidade);
+			estoque.setCdEstoque(cdEstoque);
+			estoques.add(estoque);
 		}
 		return estoques;
 	}

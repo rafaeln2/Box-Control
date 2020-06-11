@@ -22,28 +22,29 @@ public class PessoaImp implements PessoaDAO {
 
 	@Override
 	public void create(Pessoa pessoa) throws Exception {
+		
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 		String data = pessoa.getDataNascimento(); 
 		Date dataAtt = formatter.parse(data);
-
-		sttm = conn.createStatement();
-		rs = sttm.executeQuery("select max(cdpessoa)+1 from pessoa;");
-		rs.next();
-		int cdPessoa = rs.getInt(1);
-		pessoa.setCdPessoa(cdPessoa);
 		
 		stm = conn.prepareStatement("insert into pessoa(cpf, nome, data_nasc) VALUES (?, ?, ?)");
 		stm.setString(1, pessoa.getCpf());
 		stm.setString(2, pessoa.getNome());
 		stm.setDate(3, new java.sql.Date(dataAtt.getTime()));
 		stm.executeUpdate();
+		
+		sttm = conn.createStatement();
+		rs = sttm.executeQuery("select max(cdpessoa) from pessoa;");
+		rs.next();
+		int cdPessoa = rs.getInt(1);
+		pessoa.setCdPessoa(cdPessoa);
 				
 	}
 
 	@Override
-	public void read(Integer cdpessoa) throws Exception {
+	public void read(int cdpessoa) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from pessoa as p left join funcionario as f ON p.cdpessoa = f.cdpessoa where p.cdpessoa = (?) order by p.cdpessoa");
@@ -63,7 +64,7 @@ public class PessoaImp implements PessoaDAO {
 	}
 
 	@Override
-	public void update(Integer cdpessoa, String toUpdate) throws Exception {
+	public void update(int cdpessoa, String toUpdate) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE pessoa SET nome = (?) where cdpessoa = (?)");
@@ -73,7 +74,7 @@ public class PessoaImp implements PessoaDAO {
 	}
 
 	@Override
-	public void delete(Integer cdpessoa) throws Exception {
+	public void delete(int cdpessoa) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from pessoa where cdpessoa = (?)");

@@ -21,27 +21,26 @@ public class CarrinhoImp implements CarrinhoDAO {
 	public void create(Carrinho carrinho) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
-		sttm = conn.createStatement();
-		rs = sttm.executeQuery("select nextval('carrinho_cdcarrinho_seq')");
-		rs.next();
 
-		Integer id = rs.getInt(1);
+		stm = conn.prepareStatement("insert into carrinho(cdfuncionario, cdvenda, cdproduto, quantidade, nu_caixa, tipo_pagamento) VALUES (?, ?, ?, ?, ?, ?)");
 
-		stm = conn.prepareStatement("insert into carrinho(cdcarrinho, cdfuncionario, cdvenda, cdproduto, quantidade, nu_caixa, tipo_pagamento) VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-		stm.setInt(1, id);
-		stm.setInt(2, carrinho.getCdFuncionario());
-		stm.setInt(3, carrinho.getCdVenda());
-		stm.setInt(4, carrinho.getCdProduto());
-		stm.setInt(5, carrinho.getQuantidade());
-		stm.setInt(6, carrinho.getNu_caixa());
-		stm.setString(7, carrinho.getTipoPagamento());
-
+		stm.setInt(1, carrinho.getCdFuncionario());
+		stm.setInt(2, carrinho.getCdVenda());
+		stm.setInt(3, carrinho.getCdProduto());
+		stm.setInt(4, carrinho.getQuantidade());
+		stm.setInt(5, carrinho.getNu_caixa());
+		stm.setString(6, carrinho.getTipoPagamento());
 		stm.executeUpdate();
+		
+		sttm = conn.createStatement();
+		rs = sttm.executeQuery("select max(cdcarrinho) from carrinho;");
+		rs.next();
+		int cdCarrinho = rs.getInt(1);
+		carrinho.setCdcarrinho(cdCarrinho);
 	}
 	
 	@Override
-	public void read(Integer idCarrinho) throws Exception {
+	public void read(int idCarrinho) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from carrinho where cdcarrinho = (?)");
@@ -61,7 +60,7 @@ public class CarrinhoImp implements CarrinhoDAO {
 	}
 
 	@Override
-	public void update(Integer cdCarrinho, String toUpdate) throws Exception {
+	public void update(int cdCarrinho, String toUpdate) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE carrinho SET cdvenda = (?) where cdcarrinho = (?)");
@@ -73,7 +72,7 @@ public class CarrinhoImp implements CarrinhoDAO {
 	}
 
 	@Override
-	public void delete(Integer cdCarrinho) throws Exception {
+	public void delete(int cdCarrinho) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from carrinho where cdcarrinho = (?)");
@@ -92,12 +91,12 @@ public class CarrinhoImp implements CarrinhoDAO {
 		Collection<Carrinho> carrinhos = new ArrayList<>();
 
 		while(rs.next()) {
-			Integer cdCarrinho = rs.getInt("cdcarrinho");
-			Integer cdFuncionario = rs.getInt("cdfuncionario");
-			Integer cdvenda = rs.getInt("cdvenda");
-			Integer cdProduto = rs.getInt("cdproduto");
-			Integer quantidade = rs.getInt("quantidade");
-			Integer nuCaixa = rs.getInt("nu_caixa");
+			int cdCarrinho = rs.getInt("cdcarrinho");
+			int cdFuncionario = rs.getInt("cdfuncionario");
+			int cdvenda = rs.getInt("cdvenda");
+			int cdProduto = rs.getInt("cdproduto");
+			int quantidade = rs.getInt("quantidade");
+			int nuCaixa = rs.getInt("nu_caixa");
 			String tipoPagamento = rs.getString("tipo_pagamento");
 			
 			carrinhos.add(new Carrinho(cdCarrinho, cdFuncionario, cdvenda, cdProduto, quantidade, nuCaixa, tipoPagamento));

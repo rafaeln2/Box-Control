@@ -21,21 +21,21 @@ public class UsuarioSenhaImp implements UsuarioSenhaDAO {
 	public void create(UsuarioSenha usuarioSenha) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
-		sttm = conn.createStatement();
 
-		rs = sttm.executeQuery("select nextval('usuario_senha_cdus_seq')");
-		rs.next();
-		Integer id = rs.getInt(1);
-
-		stm = conn.prepareStatement("insert into usuario_senha(cdus, usuario, senha) VALUES (?, ?, ?)");
-		stm.setInt(1, id);
-		stm.setString(2, usuarioSenha.getUsuario());
-		stm.setString(3, usuarioSenha.getSenha());
+		stm = conn.prepareStatement("insert into usuario_senha(usuario, senha) VALUES (?, ?)");
+		stm.setString(1, usuarioSenha.getUsuario());
+		stm.setString(2, usuarioSenha.getSenha());
 		stm.executeUpdate();
+		
+		sttm = conn.createStatement();
+		rs = sttm.executeQuery("select max(cdus) from usuario_senha;");
+		rs.next();
+		int cdUsuarioSenha = rs.getInt(1);
+		usuarioSenha.setcdUsuarioSenha(cdUsuarioSenha);
 	}
 
 	@Override
-	public void read(Integer cdUsuarioSenha) throws Exception {
+	public void read(int cdUsuarioSenha) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("select * from usuario_senha where cdus = (?) order by cdus");
@@ -55,7 +55,7 @@ public class UsuarioSenhaImp implements UsuarioSenhaDAO {
 	}
 
 	@Override
-	public void update(Integer cdUsuarioSenha, String toUpdate) throws Exception {
+	public void update(int cdUsuarioSenha, String toUpdate) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("UPDATE usuario_senha SET usuario = (?) where cdus = (?)");
@@ -65,7 +65,7 @@ public class UsuarioSenhaImp implements UsuarioSenhaDAO {
 	}
 
 	@Override
-	public void delete(Integer cdUsuarioSenha) throws Exception {
+	public void delete(int cdUsuarioSenha) throws Exception {
 		GetConnection conexao = new GetConnection ();
 		Connection conn = conexao.getConnection();
 		stm = conn.prepareStatement("delete from usuario_senha where cdus = (?)");
