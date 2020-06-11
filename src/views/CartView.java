@@ -27,7 +27,8 @@ public class CartView extends JPanel {
 	
 	private JSpinner quantitySpinner;
 	
-	private CartModel cartModel = new CartModel();	
+	private double totalValue = 0.00;
+	private int totalItems = 0;
 	
 	public CartView() {
 		this.setBackground(Color.WHITE);
@@ -84,8 +85,8 @@ public class CartView extends JPanel {
 					DefaultTableModel model = (DefaultTableModel)table.getModel();
 					double price = Double.parseDouble(priceField.getText()) * Double.parseDouble(quantitySpinner.getValue().toString());
 					model.addRow(new Object [] {quantitySpinner.getValue(), productField.getText(), price});	
-					cartModel.getSum(table, lblTotalAPagar);
-					cartModel.getItems(table, lblTotalItens);
+					getSum(table, lblTotalAPagar);
+					getItems(table, lblTotalItens);
 					productField.setText("");
 					priceField.setText("");
 					quantitySpinner.setValue(0);								
@@ -102,8 +103,8 @@ public class CartView extends JPanel {
 				if(table.getSelectedRow() != -1) {
 					DefaultTableModel model = (DefaultTableModel)table.getModel();
 					model.removeRow(table.getSelectedRow());	
-					cartModel.getSum(table, lblTotalAPagar);
-					cartModel.getItems(table, lblTotalItens);
+					getSum(table, lblTotalAPagar);
+					getItems(table, lblTotalItens);
 				} else {
 					JOptionPane.showMessageDialog(null, "Selecione um item na tabela");
 				}
@@ -122,13 +123,13 @@ public class CartView extends JPanel {
 		btnFinalizar.setBounds(240, 432, 190, 30);
 		this.add(btnFinalizar);
 		
-		lblTotalAPagar = new JLabel("Total a pagar: R$ " + String.format("%.2f", cartModel.getTotalValue()));
+		lblTotalAPagar = new JLabel("Total a pagar: R$ " + String.format("%.2f", totalValue));
 		lblTotalAPagar.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTotalAPagar.setFont(new Font("Roboto", Font.BOLD, 24));
 		lblTotalAPagar.setBounds(640, 467, 286, 33);
 		this.add(lblTotalAPagar);
 		
-		lblTotalItens = new JLabel("Total itens: "+ cartModel.getTotalItems());
+		lblTotalItens = new JLabel("Total itens: " + totalItems);
 		lblTotalItens.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTotalItens.setFont(new Font("Roboto", Font.BOLD, 24));
 		lblTotalItens.setBounds(473, 467, 198, 33);
@@ -179,6 +180,38 @@ public class CartView extends JPanel {
 		label.setIcon(new ImageIcon("/media/guilherme/HD-EG5/HD Guilherme/_FACUL C-COMPUTACAO/3SEM_APS/APS/bin/download.png"));
 		label.setBounds(93, -16, 272, 185);
 		this.add(label);
+	}
+	
+	/*
+	 * Função soma valores da coluna preço
+	 */
+	public void getSum(JTable table, JLabel label) {
+		double sum = 0;
+		if(table.getRowCount() > 0) {
+			for(int i = 0; i < table.getRowCount(); i++) {
+				sum = sum + Double.parseDouble(table.getValueAt(i, 2).toString());
+			}
+			totalValue = sum;
+			label.setText("Total a pagar: R$ " + String.format("%.2f", totalValue));
+		} else {
+			label.setText("Total a pagar: R$ " + String.format("%.2f", 0.00));
+		}
+	}
+	
+	/*
+	 * Função soma total de itens
+	 */
+	public void getItems(JTable table, JLabel label) {
+		int sum = 0;
+		if(table.getRowCount() > 0) {
+			for(int i = 0; i < table.getRowCount(); i++) {
+				sum = sum + Integer.parseInt(table.getValueAt(i, 0).toString());
+			}
+			totalItems = sum;
+			label.setText("Total itens: " + totalItems);
+		} else {
+			label.setText("Total itens: " + 0);
+		}
 	}
 	
 	public void errorMessage(String message) {
