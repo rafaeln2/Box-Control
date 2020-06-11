@@ -21,7 +21,8 @@ public class Main {
 		
 		//codigo para instanciar as views...
 		SystemView systemView = new SystemView();
-		systemView.setVisible(true);		
+		systemView.setVisible(true);
+
 		
 		GetConnection getConnection = new GetConnection();
 		MenuMercado menuMercado = new MenuMercado();

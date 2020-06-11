@@ -17,6 +17,8 @@ public class SystemView extends JFrame {
 	private RegisterPersonView personView = new RegisterPersonView();
 	private RegisterFuncView funcView = new RegisterFuncView();
 	
+	private static JMenuItem mntmPessoa;
+	
 	
 	public SystemView() {
 		JPanel contentPane = new JPanel();
@@ -31,7 +33,7 @@ public class SystemView extends JFrame {
 		JMenu mnCadastro = new JMenu("Cadastro");
 		menuBar.add(mnCadastro);
 		
-		JMenuItem mntmPessoa = new JMenuItem("Pessoa");
+		mntmPessoa = new JMenuItem("Pessoa");
 		mnCadastro.add(mntmPessoa);
 		
 		JMenuItem mntmFuncionrio = new JMenuItem("Funcionário");
@@ -99,6 +101,10 @@ public class SystemView extends JFrame {
 		});
 		
 		getContentPane().add(contentPane);
+	}
+	
+	public static void pessoaClick() {
+		mntmPessoa.doClick();
 	}
 	
 	public void switchPanels(JPanel panel) {

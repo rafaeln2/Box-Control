@@ -17,8 +17,10 @@ public class RegisterFuncView extends JPanel {
 private JTextField cargoField;
 	
 	JButton btnRegister = new JButton("Cadastrar");
-	private JTextField birthField;
-	private JTextField cpfField;
+	private JTextField salarioField;
+	private JTextField nivelField;
+	
+	private RegisterPersonView personView = new RegisterPersonView();
 	
 	public RegisterFuncView() {
 		setBackground(Color.WHITE);
@@ -39,21 +41,12 @@ private JTextField cargoField;
 		
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(cpfField.getText().trim().isEmpty()) {
+				if(nivelField.getText().trim().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Há campos em branco, complete todos campos.");
 				} else {
 					
 					//aqui entra a logica para gravar no banco
-					
-					System.out.println("CPF: "+cpfField.getText());
-					System.out.println("Nome: "+cargoField.getText());
-					System.out.println("Nascimento: "+birthField.getText());
-					System.out.println("Rua: "+streetField.getText());
-					System.out.println("Numero: "+numField.getText());
-					System.out.println("Bairo: "+neighborhoodField.getText());
-					System.out.println("Cidade: "+cityField.getText());
-					System.out.println("Estado: "+countryField.getText());
-					System.out.println("CEP: "+cepField.getText());
+					SystemView.pessoaClick();			
 				}
 			}
 		});
@@ -66,11 +59,11 @@ private JTextField cargoField;
 		lblCadastroDeProdutos_1.setBounds(272, 13, 379, 52);
 		add(lblCadastroDeProdutos_1);
 		
-		birthField = new JTextField();
-		birthField.setToolTipText("Digite sua data de nascimento...");
-		birthField.setColumns(10);
-		birthField.setBounds(159, 144, 249, 30);
-		add(birthField);
+		salarioField = new JTextField();
+		salarioField.setToolTipText("Digite sua data de nascimento...");
+		salarioField.setColumns(10);
+		salarioField.setBounds(159, 144, 249, 30);
+		add(salarioField);
 		
 		JLabel lblMarca = new JLabel("Salário");
 		lblMarca.setFont(new Font("Roboto", Font.BOLD, 18));
@@ -82,11 +75,11 @@ private JTextField cargoField;
 		lblUnidade.setBounds(426, 149, 165, 20);
 		add(lblUnidade);
 		
-		cpfField = new JTextField();
-		cpfField.setToolTipText("Digite CPF...");
-		cpfField.setColumns(10);
-		cpfField.setBounds(590, 144, 271, 30);
-		add(cpfField);
-	}
+		nivelField = new JTextField();
+		nivelField.setToolTipText("Digite CPF...");
+		nivelField.setColumns(10);
+		nivelField.setBounds(590, 144, 271, 30);
+		add(nivelField);
+	}	
 
 }
