@@ -33,32 +33,32 @@ public class RegisterProductView extends JPanel{
 		productField.setHorizontalAlignment(SwingConstants.LEFT);
 		productField.setFont(new Font("Roboto", Font.PLAIN, 14));
 		productField.setColumns(10);
-		productField.setBounds(120, 127, 713, 30);
+		productField.setBounds(148, 127, 713, 30);
 		add(productField);
 		
 		JLabel lblProduto = new JLabel("Descrição");
 		lblProduto.setFont(new Font("Roboto", Font.BOLD, 18));
-		lblProduto.setBounds(20, 137, 127, 20);
+		lblProduto.setBounds(48, 137, 127, 20);
 		add(lblProduto);
 		
 		JLabel lblQuantity = new JLabel("Quantidade");
 		lblQuantity.setFont(new Font("Roboto", Font.BOLD, 18));
-		lblQuantity.setBounds(659, 81, 111, 20);
+		lblQuantity.setBounds(687, 81, 111, 20);
 		add(lblQuantity);
 		
 		JSpinner quantitySpinner = new JSpinner();
 		quantitySpinner.setToolTipText("Selecione a quantidade do produto...");
 		quantitySpinner.setFont(new Font("Roboto", Font.BOLD, 18));
-		quantitySpinner.setBounds(776, 76, 57, 30);
+		quantitySpinner.setBounds(804, 76, 57, 30);
 		add(quantitySpinner);
 		
 		JLabel lblCodigo = new JLabel("Código");
 		lblCodigo.setFont(new Font("Roboto", Font.BOLD, 18));
-		lblCodigo.setBounds(20, 81, 84, 20);
+		lblCodigo.setBounds(48, 81, 84, 20);
 		add(lblCodigo);
 		
 		codField = new JTextField();
-		codField.setBounds(120, 76, 219, 30);
+		codField.setBounds(148, 76, 219, 30);
 		add(codField);
 		codField.setColumns(10);
 		
@@ -77,7 +77,7 @@ public class RegisterProductView extends JPanel{
 				}
 			}
 		});
-		btnSave.setBounds(405, 270, 117, 25);
+		btnSave.setBounds(745, 490, 117, 25);
 		add(btnSave);
 		
 		JLabel lblCadastroDeProdutos_1 = new JLabel("Cadastro de Produtos");
@@ -88,32 +88,32 @@ public class RegisterProductView extends JPanel{
 		
 		JLabel lblValor = new JLabel("Valor");
 		lblValor.setFont(new Font("Roboto", Font.BOLD, 18));
-		lblValor.setBounds(541, 184, 67, 20);
+		lblValor.setBounds(569, 184, 67, 20);
 		add(lblValor);
 		
 		brandField = new JTextField();
 		brandField.setColumns(10);
-		brandField.setBounds(120, 179, 219, 30);
+		brandField.setBounds(148, 179, 219, 30);
 		add(brandField);
 		
 		JLabel lblMarca = new JLabel("Marca");
 		lblMarca.setFont(new Font("Roboto", Font.BOLD, 18));
-		lblMarca.setBounds(20, 184, 84, 20);
+		lblMarca.setBounds(48, 184, 84, 20);
 		add(lblMarca);
 		
 		valueField = new JTextField();
 		valueField.setColumns(10);
-		valueField.setBounds(615, 179, 219, 30);
+		valueField.setBounds(643, 179, 219, 30);
 		add(valueField);
 		
 		JLabel lblUnidade = new JLabel("Unidade");
 		lblUnidade.setFont(new Font("Roboto", Font.BOLD, 18));
-		lblUnidade.setBounds(402, 81, 84, 20);
+		lblUnidade.setBounds(430, 81, 84, 20);
 		add(lblUnidade);
 		
 		unitField = new JTextField();
 		unitField.setColumns(10);
-		unitField.setBounds(482, 76, 75, 30);
+		unitField.setBounds(510, 76, 75, 30);
 		add(unitField);
 	}
 }
