@@ -1,11 +1,13 @@
 package Serializable;
 
 import java.io.*;
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.CargoDAO;
-import entity.Cargo;
+import EntityDAO.*;
+import Entity.*;
 
 public class CargoSer implements CargoDAO {
 	ArrayList<Cargo> cargos = new ArrayList<Cargo>();
@@ -50,7 +52,7 @@ public class CargoSer implements CargoDAO {
 	}
 
 	@Override
-	public void read(Integer cdCargo) throws Exception {
+	public void read(int cdCargo) throws Exception {
 		ArrayList<Cargo> objects = new ArrayList<Cargo>();
 		try {
 			cargos.removeAll(cargos);
@@ -73,12 +75,12 @@ public class CargoSer implements CargoDAO {
 	}	
 
 	@Override
-	public void update(Integer cdCargo, String toUpdate) throws Exception {
+	public void update(int cdCargo, String toUpdate) throws Exception {
 		
 	}
 
 	@Override
-	public void delete(Integer cdCargo) throws Exception {
+	public void delete(int cdCargo) throws Exception {
 		ArrayList<Cargo> objects = new ArrayList<Cargo>();
 		
 		//resgatando todos os dados que estão salvos no arquivo: Cargos.txt

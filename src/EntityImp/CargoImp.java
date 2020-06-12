@@ -82,43 +82,44 @@ public class CargoImp implements CargoDAO {
 			}
 		}
 	}
-			@Override
-			public void update(int cdCargo, String toUpdate) throws Exception {
-				GetConnection conexao = new GetConnection ();
-				Connection conn = conexao.getConnection();
-				stm = conn.prepareStatement("UPDATE cargo SET nm_cargo = (?) where cdcargo = (?)");
+	
+	@Override
+	public void update(int cdCargo, String toUpdate) throws Exception {
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
+		stm = conn.prepareStatement("UPDATE cargo SET nm_cargo = (?) where cdcargo = (?)");
 
-				stm.setString(1, toUpdate);
-				stm.setInt(2, cdCargo);
+		stm.setString(1, toUpdate);
+		stm.setInt(2, cdCargo);
 
-				stm.executeUpdate();
-			}
+		stm.executeUpdate();
+	}
 
-			@Override
-			public void delete(int cdCargo) throws Exception {
-				GetConnection conexao = new GetConnection ();
-				Connection conn = conexao.getConnection();
-				stm = conn.prepareStatement("delete from cargo where cdcargo = (?)");
-				stm.setInt(1, cdCargo);
-				stm.executeUpdate();
-			}
+	@Override
+	public void delete(int cdCargo) throws Exception {
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
+		stm = conn.prepareStatement("delete from cargo where cdcargo = (?)");
+		stm.setInt(1, cdCargo);
+		stm.executeUpdate();
+	}
 
-			@Override
-			public Collection<Cargo> list() throws Exception {
-				GetConnection conexao = new GetConnection ();
-				Connection conn = conexao.getConnection();
-				stm = conn.prepareStatement("select * from cargo order by cdcargo");
+	@Override
+	public Collection<Cargo> list() throws Exception {
+		GetConnection conexao = new GetConnection ();
+		Connection conn = conexao.getConnection();
+		stm = conn.prepareStatement("select * from cargo order by cdcargo");
 
-				rs = stm.executeQuery();
+		rs = stm.executeQuery();
 
-				Collection<Cargo> cargos= new ArrayList<>();
+		Collection<Cargo> cargos= new ArrayList<>();
 
-				while(rs.next()) {
-					int nivelacesso = rs.getInt("nivelacesso");
-					String nm_cargo = rs.getString("nm_cargo");
+		while(rs.next()) {
+			int nivelacesso = rs.getInt("nivelacesso");
+			String nm_cargo = rs.getString("nm_cargo");
 
-					cargos.add(new Cargo(nivelacesso, nm_cargo));
-				}
-				return cargos;	
-			}
+			cargos.add(new Cargo(nivelacesso, nm_cargo));
 		}
+		return cargos;	
+	}
+}

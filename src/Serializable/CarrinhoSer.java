@@ -1,15 +1,12 @@
 package Serializable;
 
 import java.io.*;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.CarrinhoDAO;
-import entity.Carrinho;
-import entity.Carrinho;
+import EntityDAO.*;
+import Entity.*;
 
 public class CarrinhoSer implements CarrinhoDAO {
 	ArrayList<Carrinho> Carrinhos = new ArrayList<Carrinho>();
@@ -54,7 +51,7 @@ public class CarrinhoSer implements CarrinhoDAO {
 	}
 
 	@Override
-	public void read(Integer cdCarrinho) throws Exception {
+	public void read(int cdCarrinho) throws Exception {
 		ArrayList<Carrinho> objects = new ArrayList<Carrinho>();
 		try {
 			Carrinhos.removeAll(Carrinhos);
@@ -77,12 +74,12 @@ public class CarrinhoSer implements CarrinhoDAO {
 	}	
 
 	@Override
-	public void update(Integer cdCarrinho, String toUpdate) throws Exception {
+	public void update(int cdCarrinho, String toUpdate) throws Exception {
 		
 	}
 
 	@Override
-	public void delete(Integer cdCarrinho) throws Exception {
+	public void delete(int cdCarrinho) throws Exception {
 		ArrayList<Carrinho> objects = new ArrayList<Carrinho>();
 		
 		//resgatando todos os dados que estão salvos no arquivo: Carrinhos.txt

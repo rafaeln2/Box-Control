@@ -1,14 +1,11 @@
 package Serializable;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.EnderecoDAO;
-import entity.Endereco;
+import EntityDAO.*;
+import Entity.*;
 
 public class EnderecoSer implements EnderecoDAO {
 	ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
@@ -53,7 +50,7 @@ public class EnderecoSer implements EnderecoDAO {
 	}
 
 	@Override
-	public void read(Integer cdEndereco) throws Exception {
+	public void read(int cdEndereco) throws Exception {
 		ArrayList<Endereco> objects = new ArrayList<Endereco>();
 		try {
 			enderecos.removeAll(enderecos);
@@ -63,7 +60,7 @@ public class EnderecoSer implements EnderecoDAO {
 			
 			objects = (ArrayList<Endereco>) ois.readObject();
 			for(Endereco endereco : objects) {
-				if(endereco.getIdEndereco() == cdEndereco) {
+				if(endereco.getCdEndereco() == cdEndereco) {
 					enderecos.add(endereco);
 				}
 			}
@@ -76,12 +73,12 @@ public class EnderecoSer implements EnderecoDAO {
 	}	
 
 	@Override
-	public void update(Integer cdEndereco, String toUpdate) throws Exception {
+	public void update(int cdEndereco, String toUpdate) throws Exception {
 		
 	}
 
 	@Override
-	public void delete(Integer cdEndereco) throws Exception {
+	public void delete(int cdEndereco) throws Exception {
 		ArrayList<Endereco> objects = new ArrayList<Endereco>();
 		
 		//resgatando todos os dados que estão salvos no arquivo: Enderecos.txt
@@ -93,7 +90,7 @@ public class EnderecoSer implements EnderecoDAO {
 			
 			objects = (ArrayList<Endereco>) ois.readObject();
 			for(Endereco endereco : objects) {
-				if(endereco.getIdEndereco() == cdEndereco) {
+				if(endereco.getCdEndereco() == cdEndereco) {
 					enderecos.remove(endereco);
 				}
 			}

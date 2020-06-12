@@ -1,15 +1,11 @@
 package Serializable;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.ProdutoDAO;
-import entity.Produto;
-import entity.Produto;
+import EntityDAO.*;
+import Entity.*;
 
 public class ProdutoSer implements ProdutoDAO {
 	ArrayList<Produto> produtos = new ArrayList<Produto>();
@@ -54,7 +50,7 @@ public class ProdutoSer implements ProdutoDAO {
 	}
 
 	@Override
-	public void read(Integer cdProduto) throws Exception {
+	public void read(int cdProduto) throws Exception {
 		ArrayList<Produto> objects = new ArrayList<Produto>();
 		try {
 			produtos.removeAll(produtos);
@@ -77,12 +73,12 @@ public class ProdutoSer implements ProdutoDAO {
 	}	
 
 	@Override
-	public void update(Integer cdProduto, String toUpdate) throws Exception {
+	public void update(int cdProduto, String toUpdate) throws Exception {
 		
 	}
 
 	@Override
-	public void delete(Integer cdProduto) throws Exception {
+	public void delete(int cdProduto) throws Exception {
 		ArrayList<Produto> objects = new ArrayList<Produto>();
 		
 		//resgatando todos os dados que estão salvos no arquivo: Produtos.txt

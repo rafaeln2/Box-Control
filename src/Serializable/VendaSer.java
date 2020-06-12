@@ -1,15 +1,11 @@
 package Serializable;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.VendaDAO;
-import entity.Venda;
-import entity.Venda;
+import EntityDAO.*;
+import Entity.*;
 
 public class VendaSer implements VendaDAO {
 	ArrayList<Venda> vendas = new ArrayList<Venda>();
@@ -54,7 +50,7 @@ public class VendaSer implements VendaDAO {
 	}
 
 	@Override
-	public void read(Integer cdVenda) throws Exception {
+	public void read(int cdVenda) throws Exception {
 		ArrayList<Venda> objects = new ArrayList<Venda>();
 		try {
 			vendas.removeAll(vendas);
@@ -77,12 +73,12 @@ public class VendaSer implements VendaDAO {
 	}	
 
 	@Override
-	public void update(Integer cdVenda, String toUpdate) throws Exception {
+	public void update(int cdVenda, String toUpdate) throws Exception {
 		
 	}
 
 	@Override
-	public void delete(Integer cdVenda) throws Exception {
+	public void delete(int cdVenda) throws Exception {
 		ArrayList<Venda> objects = new ArrayList<Venda>();
 		
 		//resgatando todos os dados que estão salvos no arquivo: Vendas.txt

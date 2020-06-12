@@ -1,15 +1,11 @@
 package Serializable;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.PessoaDAO;
-import entity.Pessoa;
-import entity.Pessoa;
+import EntityDAO.*;
+import Entity.*;
 
 public class PessoaSer implements PessoaDAO {
 	ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -54,7 +50,7 @@ public class PessoaSer implements PessoaDAO {
 	}
 
 	@Override
-	public void read(Integer cdPessoa) throws Exception {
+	public void read(int cdPessoa) throws Exception {
 		ArrayList<Pessoa> objects = new ArrayList<Pessoa>();
 		try {
 			pessoas.removeAll(pessoas);
@@ -77,12 +73,12 @@ public class PessoaSer implements PessoaDAO {
 	}	
 
 	@Override
-	public void update(Integer cdPessoa, String toUpdate) throws Exception {
+	public void update(int cdPessoa, String toUpdate) throws Exception {
 		
 	}
 
 	@Override
-	public void delete(Integer cdPessoa) throws Exception {
+	public void delete(int cdPessoa) throws Exception {
 		ArrayList<Pessoa> objects = new ArrayList<Pessoa>();
 		
 		//resgatando todos os dados que estão salvos no arquivo: Pessoas.txt

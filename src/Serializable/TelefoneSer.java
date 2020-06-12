@@ -1,15 +1,11 @@
 package Serializable;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.TelefoneDAO;
-import entity.Telefone;
-import entity.Telefone;
+import EntityDAO.*;
+import Entity.*;
 
 public class TelefoneSer implements TelefoneDAO {
 	ArrayList<Telefone> telefones = new ArrayList<Telefone>();
@@ -54,7 +50,7 @@ public class TelefoneSer implements TelefoneDAO {
 	}
 
 	@Override
-	public void read(Integer cdTelefone) throws Exception {
+	public void read(int cdTelefone) throws Exception {
 		ArrayList<Telefone> objects = new ArrayList<Telefone>();
 		try {
 			telefones.removeAll(telefones);
@@ -77,12 +73,12 @@ public class TelefoneSer implements TelefoneDAO {
 	}	
 
 	@Override
-	public void update(Integer cdTelefone, String toUpdate) throws Exception {
+	public void update(int cdTelefone, String toUpdate) throws Exception {
 		
 	}
 
 	@Override
-	public void delete(Integer cdTelefone) throws Exception {
+	public void delete(int cdTelefone) throws Exception {
 		ArrayList<Telefone> objects = new ArrayList<Telefone>();
 		
 		//resgatando todos os dados que estão salvos no arquivo: Telefones.txt

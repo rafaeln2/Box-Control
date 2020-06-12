@@ -1,15 +1,11 @@
 package Serializable;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.FuncionarioDAO;
-import entity.Funcionario;
-import entity.Funcionario;
+import EntityDAO.*;
+import Entity.*;
 
 public class FuncionarioSer implements FuncionarioDAO {
 	ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();

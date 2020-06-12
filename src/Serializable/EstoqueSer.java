@@ -1,15 +1,11 @@
 package Serializable;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.EstoqueDAO;
-import entity.Estoque;
-import entity.Estoque;
+import EntityDAO.*;
+import Entity.*;
 
 public class EstoqueSer implements EstoqueDAO {
 	ArrayList<Estoque> estoques = new ArrayList<Estoque>();
@@ -54,7 +50,7 @@ public class EstoqueSer implements EstoqueDAO {
 	}
 
 	@Override
-	public void read(Integer cdEstoque) throws Exception {
+	public void read(int cdEstoque) throws Exception {
 		ArrayList<Estoque> objects = new ArrayList<Estoque>();
 		try {
 			estoques.removeAll(estoques);
@@ -77,12 +73,12 @@ public class EstoqueSer implements EstoqueDAO {
 	}	
 
 	@Override
-	public void update(Integer cdEstoque, String toUpdate) throws Exception {
+	public void update(int cdEstoque, String toUpdate) throws Exception {
 		
 	}
 
 	@Override
-	public void delete(Integer cdEstoque) throws Exception {
+	public void delete(int cdEstoque) throws Exception {
 		ArrayList<Estoque> objects = new ArrayList<Estoque>();
 		
 		//resgatando todos os dados que estão salvos no arquivo: Estoque.txt

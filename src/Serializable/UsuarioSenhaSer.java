@@ -1,15 +1,11 @@
 package Serializable;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import dao.UsuarioSenhaDAO;
-import entity.UsuarioSenha;
-import entity.UsuarioSenha;
+import EntityDAO.*;
+import Entity.*;
 
 public class UsuarioSenhaSer implements UsuarioSenhaDAO {
 	ArrayList<UsuarioSenha> usuarioSenhas = new ArrayList<UsuarioSenha>();
@@ -54,7 +50,7 @@ public class UsuarioSenhaSer implements UsuarioSenhaDAO {
 	}
 
 	@Override
-	public void read(Integer cdUsuarioSenha) throws Exception {
+	public void read(int cdUsuarioSenha) throws Exception {
 		ArrayList<UsuarioSenha> objects = new ArrayList<UsuarioSenha>();
 		try {
 			usuarioSenhas.removeAll(usuarioSenhas);
@@ -77,12 +73,12 @@ public class UsuarioSenhaSer implements UsuarioSenhaDAO {
 	}	
 
 	@Override
-	public void update(Integer cdUsuarioSenha, String toUpdate) throws Exception {
+	public void update(int cdUsuarioSenha, String toUpdate) throws Exception {
 		
 	}
 
 	@Override
-	public void delete(Integer cdUsuarioSenha) throws Exception {
+	public void delete(int cdUsuarioSenha) throws Exception {
 		ArrayList<UsuarioSenha> objects = new ArrayList<UsuarioSenha>();
 		
 		//resgatando todos os dados que estão salvos no arquivo: UsuarioSenhas.txt
