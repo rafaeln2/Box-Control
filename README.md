@@ -10,4 +10,4 @@ Trabalho de Semestre: Nosso projeto consiste em um sistema de controle de estoqu
 - Bernardo Souza
 - Guilherme Almeida
 - Paulo Cesar
-- Rafael Nunes
+- Rafael Nunes do Nascimento
